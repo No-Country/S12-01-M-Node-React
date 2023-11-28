@@ -6,7 +6,7 @@ import config from "./config.js";
 import connectDB from "./database/db.js"
 import initializePassport from "./services/auth.service.js";
 
-import routerApi from "./routes/index.js";
+import router from "./routes/index.js";
 
 
 const {PORT} = config || 8080;
@@ -21,12 +21,13 @@ app.use(passport.initialize());
 
 app.use(cookieParser());
 
-connectDB();
 
-app.use("/api/v1", routerApi);
+app.use("/api/v1", router);
 
 
 
 const httpServer = app.listen(PORT, ()=> {
     console.log(`Listening on port ${PORT}`);
 })
+
+connectDB();

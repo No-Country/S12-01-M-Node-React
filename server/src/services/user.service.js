@@ -1,5 +1,5 @@
 import userModel from "../models/user.model.js";
-import comparePassword from "../helpers/encrypt.js";
+import {comparePassword} from "../helpers/encrypt.js";
 import AppError from "../helpers/appError.js";
 
 
@@ -11,8 +11,10 @@ const loginUser = async  (email, password) => {
         if (!user) {
             throw new AppError('Email not found', 404);
         }
-
+        console.log(user);
+        
         const isMatch = await comparePassword(password, user.password);
+
         if (!isMatch) {
             throw new AppError('Invalid email or password', 401);
         }
@@ -25,4 +27,4 @@ const loginUser = async  (email, password) => {
     }
 };
 
-export default {loginUser};
+export default loginUser;

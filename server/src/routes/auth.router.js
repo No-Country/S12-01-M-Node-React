@@ -10,7 +10,7 @@ const router = Router();
 router.post("/register", passport.authenticate("register", {session: false}), register)
 
 
-router.post("/login", loginUser);
+router.post("/login", loginUsers);
 
 export default router;
 
