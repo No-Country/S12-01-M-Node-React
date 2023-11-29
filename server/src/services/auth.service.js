@@ -1,8 +1,8 @@
 import userModel from "../models/user.model.js";
+
 import AppError from "../helpers/appError.js";
 import {generateAndSignToken} from "../helpers/jwt.js";
 import {encryptPassword} from "../helpers/encrypt.js";
-import jwt from "jsonwebtoken"
 
 import passport from "passport";
 import local from "passport-local"
@@ -10,7 +10,6 @@ import local from "passport-local"
 const LocalStrategy = local.Strategy;
 
 const initializePassport = ( ) =>{
-    
     passport.use(
         "register",
         new LocalStrategy ({passReqToCallback: true, usernameField : "email"}, async (req, username, password, done) => {
@@ -39,10 +38,8 @@ const initializePassport = ( ) =>{
                     throw new AppError('Failed to create user', 500);
                 } 
 
-                const token = generateAndSignToken(newUser);
+                return done(null, result);
                 
-                return done(null, { ...newUser._doc, token: token}) 
-
             } catch (error) {
                 console.log(error);
                 throw new Error(error);

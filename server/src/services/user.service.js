@@ -1,17 +1,21 @@
 import userModel from "../models/user.model.js";
 import {comparePassword} from "../helpers/encrypt.js";
 import AppError from "../helpers/appError.js";
+import { generateAndSignToken } from "../helpers/jwt.js";
+import jwt from "jsonwebtoken"
+
+import config from "../config.js";
+const {COOKIE_NAME, JWT_SECRET} = config;
 
 
-
-
-const loginUser = async  (email, password) => {
+const loginUser = async  (req,res) => {
     try {
-        const user = await userModel.findOne({ email });
+        const {email, password} = req.body;
+        const user = await userModel.findOne({ email : email});
+
         if (!user) {
             throw new AppError('Email not found', 404);
         }
-        console.log(user);
         
         const isMatch = await comparePassword(password, user.password);
 
@@ -19,10 +23,20 @@ const loginUser = async  (email, password) => {
             throw new AppError('Invalid email or password', 401);
         }
 
-        const token = generateAndSignToken(user);
+        const jwtUser = JSON.parse(JSON.stringify(user));
 
-        return { user: { ...user._doc, password: undefined }, token };
+        const token = jwt.sign(jwtUser,JWT_SECRET, {expiresIn: "24h"})
+
+        if (!token) {
+            throw new AppError('Token undefined', 401);
+        }
+    
+        return res
+        .cookie(COOKIE_NAME, token, {httpOnly: true})
+        .send({status:"success", message:"Logged in"})
+
     } catch (error) {
+        console.log(error);
         throw new AppError('Login failed', 403);
     }
 };

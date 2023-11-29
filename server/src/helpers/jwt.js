@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 import config from "../config.js"
 
-const {JWT_EXPIRES, JWT_SECRET} = config;
+const {JWT_EXPIRES, JWT_SECRET, COOKIE_NAME} = config;
 
 export const generateAndSignToken = (user) => {
     const secretKey = JWT_SECRET;

@@ -1,8 +1,9 @@
 import {Router} from "express";
 import passport from "passport";
 
-import { loginUsers, register } from "../controllers/auth.controllers.js";
+import {  register} from "../controllers/auth.controllers.js";
 
+import loginUser from "../services/user.service.js";
 
 const router = Router();
 
@@ -10,7 +11,7 @@ const router = Router();
 router.post("/register", passport.authenticate("register", {session: false}), register)
 
 
-router.post("/login", loginUsers);
+router.post("/login", loginUser);
 
 export default router;
 
