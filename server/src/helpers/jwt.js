@@ -2,11 +2,11 @@ import jwt from 'jsonwebtoken';
 
 import config from "../config.js"
 
-const {JWT_EXPIRES, JWT_SECRET} = config;
+const {JWT_EXPIRES, JWT_SECRET, COOKIE_NAME} = config;
 
-const generateAndSignToken = (user) => {
+export const generateAndSignToken = (user) => {
     const secretKey = JWT_SECRET;
-    const { password, ...restData } = user._doc;
+    const { password, ...restData } = user;
     const payload = { ...restData };
     const options = { expiresIn: JWT_EXPIRES };
 
@@ -18,7 +18,7 @@ const generateAndSignToken = (user) => {
     }
 };
 
-const verifyToken = (data) => {
+export const verifyToken = (data) => {
     const secretKey = JWT_SECRET;
     const token = data.split(' ')[1];
 
@@ -28,5 +28,3 @@ const verifyToken = (data) => {
 
     return jwt.verify(token, secretKey);
 };
-
-export default { generateAndSignToken, verifyToken };
