@@ -1,8 +1,9 @@
 import {Router} from "express";
 import passport from "passport";
 
-import { loginUsers, register } from "../controllers/auth.controllers.js";
+import {  register} from "../controllers/auth.controllers.js";
 
+import loginUser from "../services/user.service.js";
 
 const router = Router();
 
