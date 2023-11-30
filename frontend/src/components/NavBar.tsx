@@ -1,32 +1,37 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export const NavBar = () => {
+  const pathname = usePathname();
+
+  const links = [
+    { title: "Inicio", path: "/" },
+    { title: "Eventos", path: "/eventos" },
+    { title: "Agenda", path: "/agenda" },
+    { title: "Ayuda", path: "/ayuda" },
+  ];
+
   return (
     <header className="h-20 flex items-center px-10 justify-between border border-b[1px] border-b-Principal">
       <nav className="gap-8 flex items-center">
-        <Link href="/">
-          <h1 className="font-extrabold text-3xl">Eventry</h1>
-        </Link>
         <Link
           href="/"
-          className="text-lg font-semibold">
-          Inicio
+          className="font-extrabold text-3xl">
+          Eventry
         </Link>
-        <Link
-          href="/eventos"
-          className="text-lg font-semibold">
-          Eventos
-        </Link>
-        <Link
-          href="/agenda"
-          className="text-lg font-semibold">
-          Agenda
-        </Link>
-        <Link
-          href="/ayuda"
-          className="text-lg font-semibold">
-          Ayuda
-        </Link>
+        {links.map((link) => (
+          <Link
+            className={
+              link.path === pathname
+                ? `text-Principal text-lg font-semibold`
+                : `text-lg font-semibold`
+            }
+            key={link.title}
+            href={link.path}>
+            {link.title}
+          </Link>
+        ))}
       </nav>
       <aside className="flex items-center gap-2">
         <p className="text-lg font-semibold">Iniciar Sesión</p>
