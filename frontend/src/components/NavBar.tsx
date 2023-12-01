@@ -22,11 +22,9 @@ export const NavBar = () => {
         </Link>
         {links.map((link) => (
           <Link
-            className={
-              link.path === pathname
-                ? `text-Principal text-lg font-semibold`
-                : `text-lg font-semibold`
-            }
+            className={`text-lg font-semibold ${
+              link.path === pathname ? "text-Principal" : "text-black"
+            }`}
             key={link.title}
             href={link.path}>
             {link.title}
