@@ -1,4 +1,4 @@
-// Ensure you have the required imports
+/* // Ensure you have the required imports
 'use client'
 import GoogleIcon from '@/assets/icons/GoogleIcon';
 import React, { useEffect } from 'react';
@@ -61,3 +61,4 @@ const GoogleAuth: React.FC<GoogleAuthProps> = (props: GoogleAuthProps) => {
 };
 
 export default GoogleAuth;
+ */

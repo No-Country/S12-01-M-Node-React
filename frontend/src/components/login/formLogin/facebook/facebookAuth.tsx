@@ -1,4 +1,4 @@
-import FacebookIcon from '@/assets/icons/FacebookIcon';
+/* import FacebookIcon from '@/assets/icons/FacebookIcon';
 import React, { FC, useEffect } from 'react';
 import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login';
 
@@ -46,3 +46,4 @@ const FacebookAuth: FC<FacebookLoginButtonProps> = ({ onLogin }) => {
 };
 
 export default FacebookAuth;
+ */
