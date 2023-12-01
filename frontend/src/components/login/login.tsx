@@ -25,7 +25,7 @@ const Login = (props: Props) => {
           <FormAuth />
         </div>
         <div className="flex justify-center items-center  w-full">
-          <Link href={"/a"} className="text-Principal underline text-xl">No tengo cuenta en Eventry</Link>
+          <Link href={"/register"} className="text-Principal underline text-xl">No tengo cuenta en Eventry</Link>
         </div>
       </section>
      <BoxImage/>
