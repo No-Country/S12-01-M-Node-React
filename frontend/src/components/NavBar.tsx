@@ -20,7 +20,10 @@ export const NavBar = () => {
           className="font-extrabold text-3xl">
           Eventry
         </Link>
-        {pathname == "/" ? (
+        {pathname == "/" ||
+        pathname == "/agenda" ||
+        pathname == "/ayuda" ||
+        pathname == "/eventos" ? (
           <>
             {links.map((link) => (
               <Link
@@ -37,7 +40,10 @@ export const NavBar = () => {
           ""
         )}
       </nav>
-      {pathname == "/" ? (
+      {pathname == "/" ||
+      pathname == "/agenda" ||
+      pathname == "/ayuda" ||
+      pathname == "/eventos" ? (
         <aside className="flex items-center gap-2">
           <Link
             href={"/login"}
