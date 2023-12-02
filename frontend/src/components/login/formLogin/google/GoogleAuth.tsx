@@ -1,23 +1,36 @@
-/* // Ensure you have the required imports
 'use client'
-import GoogleIcon from '@/assets/icons/GoogleIcon';
 import React, { useEffect } from 'react';
-import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
+import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
+import { type } from 'os';
+import GoogleIcon from '@/assets/icons/GoogleIcon';
 
 type GoogleAuthProps = {};
+type GoogleButtonProps = {};
+
+const GoogleButton: React.FC<GoogleButtonProps> = (props: GoogleButtonProps) => {
+
+  const login = useGoogleLogin({
+    
+    onSuccess: tokenResponse => console.log(tokenResponse),
+  });
+
+  return (
+      <button onClick={() => login()} className='' >
+       <GoogleIcon width={37}/>
+      </button>
+  );
+};
+
 
 const GoogleAuth: React.FC<GoogleAuthProps> = (props: GoogleAuthProps) => {
-  const clientIdGoogle = '354100094772-8luvc02gi36citqetv41t23ss8h2leiv.apps.googleusercontent.com';
-
+  const clientIdGoogle = '244278261503-oasa5c28d7343ah61h1rvklhoqm9otbb.apps.googleusercontent.com';
 
   useEffect(() => {
     const start = async () => {
       try {
         await (window as any).gapi.load('auth2');
         await (window as any).gapi.auth2.init({
-          clientId: clientIdGoogle 
-          
-
+          clientId: clientIdGoogle
         });
       } catch (error) {
         console.error('Error initializing Google API', error);
@@ -26,39 +39,10 @@ const GoogleAuth: React.FC<GoogleAuthProps> = (props: GoogleAuthProps) => {
 
     start();
   }, []);
-
-  const onSuccess = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-    console.log(response);
-  };
-
-  const onFailure = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-    console.log(response);
-  };
-//   const responseFacebook = (response) => {
-//     console.log(response);
-//   };
-
-  return (
-  
-     
-          <GoogleLogin
-            clientId={clientIdGoogle}
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            render={(renderProps) => (
-              <button
-                onClick={renderProps.onClick}
-                
-              >
-                <img src="./" alt="" />
-                <GoogleIcon width={30} height={30} />
-              </button>
-            )}
-          />
-      
-
-  );
-};
-
+  return(
+    <GoogleOAuthProvider clientId={clientIdGoogle}>
+    <GoogleButton/>
+    </GoogleOAuthProvider>
+  )
+} 
 export default GoogleAuth;
- */

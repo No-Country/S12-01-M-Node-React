@@ -23,18 +23,18 @@ const BoxImage = (props: Props) => {
       <div className="absolute top-[35%] right-0 mr-4 flex flex-col justify-evenly w-20">
         <Link
           href={"#"}
-          className="my-4 rounded-full">
-          <FaFacebookF className="text-white text-3xl rounded-full p-10 mr-2 opacity-50 z-10 bg-black" />
+          className=" bg-white text-black my-4 w-full h-20   rounded-full flex justify-center items-center">
+          <FaFacebookF className=" text-3xl opacity-80  " />
         </Link>
         <Link
           href={"#"}
-          className="bg-white my-4 rounded-full">
-          <FaYoutube className="text-white text-3xl rounded-full p-10 mr-2 opacity-50 z-10 bg-black" />
+          className=" bg-white text-black my-4 w-full h-20   rounded-full flex justify-center items-center">
+          <FaYoutube className=" text-3xl opacity-80  " />
         </Link>
         <Link
           href={"#"}
-          className="my-4 rounded-full">
-          <FaTwitter className="text-white text-3xl rounded-full p-10 mr-2 opacity-50 z-10 bg-black" />
+          className=" bg-white text-black my-4 w-full h-20   rounded-full flex justify-center items-center">
+          <FaTwitter className=" text-3xl opacity-80  " />
         </Link>
       </div>
     </section>
