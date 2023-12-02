@@ -1,5 +1,6 @@
 import { CardHomePage } from "@/components/CardHomePage";
 import { HomeCategories } from "@/components/HomeCategories";
+import { SearchBarHome } from "@/components/SearchBarHome";
 
 export default function Home() {
   return (
@@ -10,11 +11,7 @@ export default function Home() {
             Todos los eventos cercanos a vos para que hagas lo que más te
             apasiona.
           </h1>
-          <input
-            type="text"
-            placeholder="Buscar evento..."
-            className="mt-5 border border-[#D9D9D9] px-4 w-[458px] h-[60px] bg-[url('/svg/SearchIcon.svg')] bg-no-repeat bg-right rounded-lg font- font-medium text-sm text-[#666666] focus:outline-none  focus:border-[3px] focus:border-Principal "
-          />
+          <SearchBarHome />
         </article>
         <CardHomePage />
       </section>
