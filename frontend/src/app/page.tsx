@@ -1,6 +1,6 @@
-import { CardHomePage } from "@/components/CardHomePage";
-import { HomeCategories } from "@/components/HomeCategories";
-import { SearchBarHome } from "@/components/SearchBarHome";
+import { CardHomePage } from "@/components/homepage/CardHomePage";
+import { HomeCategories } from "@/components/homepage/HomeCategories";
+import { SearchBarHome } from "@/components/homepage/SearchBarHome";
 
 export default function Home() {
   return (

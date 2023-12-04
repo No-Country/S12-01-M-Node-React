@@ -9,7 +9,7 @@ export interface Usuario {
   role: Role;
 }
 
-enum Role {
+export enum Role {
   admin,
   user,
   event_manager,
@@ -25,4 +25,14 @@ export interface Eventos {
   precio: number;
   comentarios: string[];
   imagen: string;
+}
+
+export interface UserLoginState {
+  loginInfo: {
+    usuario: {
+      id: string;
+      email: string;
+    };
+    isLogged: boolean;
+  };
 }
