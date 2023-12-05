@@ -4,14 +4,12 @@ import Link from "next/link";
 import RegisterForm from "./formRegister/FormRegister";
 import BoxImage from "./formRegister/BoxImage/BoxImage";
 
-type Props = {};
-
-const Register = (props: Props) => {
+const Register = () => {
   return (
-    <main className="flex items-center gap-20">
+    <main className="flex items-center ">
       <BoxImage />
-      <section className="w-[500px] mx-10 my-10 space-y-4">
-        <div className="">
+      <section className="w-1/2 px-28 pr-24">
+        <div>
           <h2 className={`text-[34px] leading-[51px] text-${roboto} font-bold`}>
             Registrate Ahora
           </h2>
