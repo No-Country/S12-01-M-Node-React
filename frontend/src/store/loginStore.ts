@@ -15,7 +15,6 @@ const useUser = create<UserState>()((set) => ({
       nombre: "",
       apellido: "",
       email: "",
-      password: "",
       telefono: "",
       favoritos: [],
       role: Role.user,

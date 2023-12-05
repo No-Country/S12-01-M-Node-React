@@ -3,7 +3,7 @@ export interface Usuario {
   nombre: string;
   apellido: string;
   email: string;
-  password: string;
+  password?: string;
   telefono: string;
   favoritos?: string[];
   role: Role;
@@ -12,7 +12,6 @@ export interface Usuario {
 export enum Role {
   admin,
   user,
-  event_manager,
 }
 
 export interface Eventos {

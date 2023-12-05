@@ -16,8 +16,7 @@ const Register = (props: Props) => {
             Registrate Ahora
           </h2>
           <p
-            className={`text-base text-${roboto} text-[#666666] first-letter:uppercase`}
-          >
+            className={`text-base text-${roboto} text-[#666666] first-letter:uppercase`}>
             ingresa tus datos para crear una cuenta.
           </p>
         </div>
@@ -32,7 +31,9 @@ const Register = (props: Props) => {
           </p>
         </div>
         <div className="flex">
-          <Link href={"/login"} className="text-Principal underline text-base font-semibold">
+          <Link
+            href={"/login"}
+            className="text-Principal underline text-base font-semibold">
             Ya tengo cuenta en Eventry
           </Link>
         </div>
