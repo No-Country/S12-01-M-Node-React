@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
     ticket: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Ticket',
-        required: true,
+        
     },
     isActive: {
         type: Boolean,
