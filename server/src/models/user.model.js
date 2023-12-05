@@ -1,36 +1,50 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const userCollection = "Users";
+const userCollection = 'Users';
 
-const userSchema = new mongoose.Schema ({
-    first_name : {
-        type: String,
-        required: true
-    },
-    last_name : {
-        type: String,
-        required: true
-    },
-    email : {
+const userSchema = new mongoose.Schema({
+    first_name: {
         type: String,
         required: true,
-        unique : true
+    },
+    last_name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
-    telephone : {
+    telephone: {
         type: String,
-        required: true
+        required: true,
     },
-    favourites : [String],
-    role : {
+    favorites: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Event',
+        },
+    ],
+    role: {
         type: String,
-        enum : ["user", "admin", "event_manager"],
-        default: "user"
-    }
-})
+        enum: ['user', 'event_manager'],
+        default: 'user',
+    },
+    ticket: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Ticket',
+        required: true,
+    },
+    isActive: {
+        type: Boolean,
+        default: true,
+    },
+});
 
 userSchema.set('toJSON', {
     transform: function (doc, ret) {
