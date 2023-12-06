@@ -21,3 +21,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.radioButtonHomePage {
+  @apply absolute left-0 top-0 w-full h-full appearance-none cursor-pointer;
+}
