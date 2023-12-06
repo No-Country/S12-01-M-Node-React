@@ -13,7 +13,7 @@ interface RegisterFormInputs {
   password: string;
 }
 
-const RegisterForm: React.FC = () => {
+const RegisterForm = () => {
   const {
     register,
     handleSubmit,
