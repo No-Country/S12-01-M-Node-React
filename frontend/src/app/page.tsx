@@ -1,4 +1,6 @@
 import { CardHomePage } from "@/components/homepage/CardHomePage";
+import { EventosDestacados } from "@/components/homepage/EventosDestacados";
+import { HomeBanner } from "@/components/homepage/HomeBanner";
 import { HomeCategories } from "@/components/homepage/HomeCategories";
 import { SearchBarHome } from "@/components/homepage/SearchBarHome";
 
@@ -16,6 +18,8 @@ export default function Home() {
         <CardHomePage />
       </section>
       <HomeCategories />
+      <EventosDestacados />
+      <HomeBanner />
     </main>
   );
 }

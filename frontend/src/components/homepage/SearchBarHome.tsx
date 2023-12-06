@@ -1,8 +1,8 @@
 "use client";
 import { Eventos } from "@/helpers/interfaces";
 import Image from "next/image";
-import searchButton from "@/assets/svg/SearchIcon.svg";
-import { useForm } from "react-hook-form";
+import searchButton from "@/assets/svg/SearchLocationIcon.svg";
+import useSearchBar from "@/hooks/useSearchBar";
 
 const eventosArray: Eventos[] = [
   {
@@ -14,6 +14,7 @@ const eventosArray: Eventos[] = [
     precio: 40,
     comentarios: ["Increíble evento", "Gran experiencia"],
     imagen: "concierto_a.jpg",
+    dueño: "Dueño A",
   },
   {
     nombre: "Deporte B",
@@ -24,6 +25,7 @@ const eventosArray: Eventos[] = [
     precio: 25,
     comentarios: ["Partido emocionante", "Buen ambiente"],
     imagen: "deporte_b.jpg",
+    dueño: "Dueño B",
   },
   {
     nombre: "Concierto C",
@@ -34,6 +36,7 @@ const eventosArray: Eventos[] = [
     precio: 50,
     comentarios: ["Diversión garantizada", "Artistas increíbles"],
     imagen: "festival_c.jpg",
+    dueño: "Dueño C",
   },
   {
     nombre: "Conferencia D",
@@ -44,6 +47,7 @@ const eventosArray: Eventos[] = [
     precio: 15,
     comentarios: ["Interesante charla", "Buenos ponentes"],
     imagen: "conferencia_d.jpg",
+    dueño: "Dueño D",
   },
   {
     nombre: "Teatro E",
@@ -54,6 +58,7 @@ const eventosArray: Eventos[] = [
     precio: 35,
     comentarios: ["Excelente actuación", "Historia cautivadora"],
     imagen: "teatro_e.jpg",
+    dueño: "Dueño E",
   },
   {
     nombre: "Exposición F",
@@ -64,6 +69,7 @@ const eventosArray: Eventos[] = [
     precio: 20,
     comentarios: ["Obras impresionantes", "Ambiente cultural"],
     imagen: "exposicion_f.jpg",
+    dueño: "Dueño F",
   },
   {
     nombre: "Cine G",
@@ -74,6 +80,7 @@ const eventosArray: Eventos[] = [
     precio: 10,
     comentarios: ["Película emocionante", "Buena calidad"],
     imagen: "cine_g.jpg",
+    dueño: "Dueño G",
   },
   {
     nombre: "Evento H",
@@ -84,6 +91,7 @@ const eventosArray: Eventos[] = [
     precio: 30,
     comentarios: ["Experiencia única", "Inolvidable"],
     imagen: "evento_h.jpg",
+    dueño: "Dueño H",
   },
   {
     nombre: "Concierto I",
@@ -94,6 +102,7 @@ const eventosArray: Eventos[] = [
     precio: 45,
     comentarios: ["Concierto espectacular", "Risas garantizadas"],
     imagen: "show_i.jpg",
+    dueño: "Dueño I",
   },
   {
     nombre: "Fiesta J",
@@ -104,34 +113,13 @@ const eventosArray: Eventos[] = [
     precio: 15,
     comentarios: ["Gran ambiente", "Música genial"],
     imagen: "fiesta_j.jpg",
+    dueño: "Dueño J",
   },
 ];
 
 export const SearchBarHome = () => {
-  const { register, handleSubmit, setValue, reset } = useForm();
-
-  const filterEvents = (data: any) => {
-    console.log(data);
-    const searchInput = data.search.toLowerCase();
-    return eventosArray.filter((evento) => {
-      const lowerCaseNombre = evento.nombre.toLowerCase();
-      const lowerCaseCategoria = evento.categoria.toLowerCase();
-      const lowerCaseLocation = evento.location.toLowerCase();
-
-      return (
-        lowerCaseNombre.includes(searchInput) ||
-        lowerCaseCategoria.includes(searchInput) ||
-        lowerCaseLocation.includes(searchInput)
-      );
-    });
-  };
-
-  const onSubmit = (data: any) => {
-    console.log(data);
-    const filteredEvents = filterEvents(data);
-    console.log("Eventos filtrados:", filteredEvents);
-    reset();
-  };
+  const { onSubmit, register, handleSubmit, setValue } =
+    useSearchBar(eventosArray);
 
   return (
     <form className="relative w-[458px] h-[60px]">
