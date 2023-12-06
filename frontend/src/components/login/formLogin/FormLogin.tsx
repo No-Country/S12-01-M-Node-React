@@ -1,9 +1,12 @@
-"use client";
+'use client'
+import { useState, useEffect } from "react";
 import { roboto } from "@/assets/font";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+
+import * as regexPatterns from "../../../helpers/Regex";
 
 interface LoginFormInputs {
   username: string;
@@ -17,10 +20,20 @@ const LoginForm: React.FC = () => {
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
+  // State to hold form data
+  const [formData, setFormData] = useState<LoginFormInputs | null>(null);
+
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
-    // Simula el proceso de inicio de sesión
+    // Store form data in the state
+    setFormData(data);
+    // Simulate the login process
     console.log("Datos de inicio de sesión:", data);
   };
+
+  // Log the form data after the component has re-rendered
+  useEffect(() => {
+    console.log("FormData:", formData);
+  }, [formData]);
 
   return (
     <form
@@ -37,14 +50,16 @@ const LoginForm: React.FC = () => {
         <div className="flex items-center h-10 rounded-lg border-2 w-full px-5 py-6 border-[#D9D9D9] ">
           <EnvelopeIcon className="text-base w-5 h-5 opacity-20" />
           <input
-            type="gmail"
-            {...register("username", { required: true })}
+            type="email"
+            {...register("username", {
+              required: true,
+                         })}
             placeholder="Tu correo electrónico"
-            className="ring-transparent ring-0 w-full focus:ring-0 focus:ring-transparent text-[#4e4e4e] outline-none pl-2 "
+            className="ring-transparent ring-0 w-full focus:ring-0 focus:ring-transparent text-[#4e4e4e] outline-none pl-2 appearance-none  "
             name="user"
           />
         </div>
-        {errors.username && <p>Este campo es requerido</p>}
+        {errors.username && <p>Este campo es requerido y debe ser un correo válido</p>}
       </div>
       <div className="my-4">
         <label
@@ -58,7 +73,10 @@ const LoginForm: React.FC = () => {
 
           <input
             type="password"
-            {...register("password", { required: true, minLength: 6 })}
+            {...register("password", {
+              required: true,
+              
+            })}
             placeholder="Tu contraseña"
             className="ring-transparent ring-0 w-full focus:ring-0 focus:ring-transparent text-[#4e4e4e] outline-none pl-2 "
             name="pass"

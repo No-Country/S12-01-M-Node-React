@@ -1,4 +1,3 @@
-// Ensure you have the required imports
 "use client";
 import React from "react";
 import GoogleAuth from './google/GoogleAuth';
