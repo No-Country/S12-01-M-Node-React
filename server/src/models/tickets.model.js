@@ -5,17 +5,14 @@ const ticketSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    name: {
-        type: String,
+    event_name: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event',
         required: true,
     },
     event_date: {
-        type: Date,
-        required: true,
-    },
-    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Event',
         required: true,
     },
 });
