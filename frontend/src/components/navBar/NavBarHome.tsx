@@ -8,7 +8,7 @@ import useSearchBar from "@/hooks/useSearchBar";
 
 const eventosArray: Eventos[] = [
   {
-    nombre: "Concierto A",
+    nombre: "Concierto 1",
     categoria: "Música",
     location: "Ciudad A",
     fecha: "2023-12-01",
