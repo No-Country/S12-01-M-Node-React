@@ -4,20 +4,17 @@ import Link from "next/link";
 import RegisterForm from "./formRegister/FormRegister";
 import BoxImage from "./formRegister/BoxImage/BoxImage";
 
-type Props = {};
-
-const Register = (props: Props) => {
+const Register = () => {
   return (
-    <main className="flex items-center gap-20">
+    <main className="flex items-center ">
       <BoxImage />
-      <section className="w-[500px] mx-10 my-10 space-y-4">
-        <div className="">
+      <section className="w-1/2 px-28 pr-24">
+        <div>
           <h2 className={`text-[34px] leading-[51px] text-${roboto} font-bold`}>
             Registrate Ahora
           </h2>
           <p
-            className={`text-base text-${roboto} text-[#666666] first-letter:uppercase`}
-          >
+            className={`text-base text-${roboto} text-[#666666] first-letter:uppercase`}>
             ingresa tus datos para crear una cuenta.
           </p>
         </div>
@@ -32,7 +29,9 @@ const Register = (props: Props) => {
           </p>
         </div>
         <div className="flex">
-          <Link href={"/login"} className="text-Principal underline text-base font-semibold">
+          <Link
+            href={"/login"}
+            className="text-Principal underline text-base font-semibold">
             Ya tengo cuenta en Eventry
           </Link>
         </div>
