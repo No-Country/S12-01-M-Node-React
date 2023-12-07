@@ -16,7 +16,7 @@ export const FilterBarButtons = ({
   eventos,
 }: FilterBarButtonsProps) => {
   const nextCard = () => {
-    if (currentIndex < eventos.length - 1) {
+    if (currentIndex < eventos.length - 3) {
       setCurrentIndex(currentIndex + 1);
     }
     return;
