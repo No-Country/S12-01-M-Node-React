@@ -1,6 +1,8 @@
 import { CardHomePage } from "@/components/homepage/CardHomePage";
 import { HomeCategories } from "@/components/homepage/HomeCategories";
 import { SearchBarHome } from "@/components/homepage/SearchBarHome";
+import Sponosrs from "@/components/homepage/Sponsors/Sponosrs";
+import Testimonios from "@/components/homepage/Testimonios/Testimonios";
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
         <CardHomePage />
       </section>
       <HomeCategories />
+      <Sponosrs/>
+      <Testimonios/>
     </main>
   );
 }
