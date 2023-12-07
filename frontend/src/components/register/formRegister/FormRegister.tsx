@@ -1,19 +1,23 @@
 "use client";
 import { roboto } from "@/assets/font";
+import { Role } from "@/helpers/interfaces";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
-import React from "react";
 import { useForm } from "react-hook-form";
+import { MAIN_ROUTE, REGISTER_ROUTE } from "@/routes";
+import { useRouter } from "next/navigation";
 
 interface RegisterFormInputs {
-  nombre: string;
-  apellido: string;
-  telefono: string;
+  first_name: string;
+  last_name: string;
+  telephone: string;
   email: string;
   password: string;
+  role: Role.user;
 }
 
 const RegisterForm = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -21,10 +25,39 @@ const RegisterForm = () => {
     reset,
   } = useForm<RegisterFormInputs>();
 
-  const onSubmit = (data: RegisterFormInputs) => {
-    // Simula el proceso de inicio de sesión
-    console.log("Datos de registro de usuario:", data);
-    reset();
+  const onSubmit = async (data: RegisterFormInputs) => {
+    console.log(data);
+    try {
+      const res = await fetch(`${MAIN_ROUTE}${REGISTER_ROUTE}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name: data.first_name,
+          last_name: data.last_name,
+          telephone: data.telephone,
+          email: data.email,
+          password: data.password,
+          role: Role.user,
+        }),
+      });
+      if (res.ok) {
+        const responseData = await res.json();
+        console.log("Respuesta del servidor:", responseData);
+        reset();
+        router.push("/login");
+        return responseData;
+      } else {
+        return Promise.reject({
+          err: true,
+          status: res.status,
+          statusText: res.statusText,
+        });
+      }
+    } catch (err) {
+      return err;
+    }
   };
 
   return (
@@ -33,38 +66,38 @@ const RegisterForm = () => {
       className={`flex flex-col gap-4 text-${roboto}`}>
       <div className="flex gap-2">
         <div className="flex flex-col w-full">
-          <label htmlFor="nombre">Nombre</label>
+          <label htmlFor="first_name">Nombre</label>
           <input
             type="text"
-            {...register("nombre", { required: true })}
+            {...register("first_name", { required: true })}
             className="h-10 rounded-lg border-2 w-full px-5 py-6 border-[#D9D9D9] mt-1 "
-            name="nombre"
+            name="first_name"
           />
         </div>
         <div className="flex flex-col w-full">
-          <label htmlFor="apellido">Apellido</label>
+          <label htmlFor="last_name">Apellido</label>
           <input
             type="text"
-            {...register("apellido", { required: true })}
+            {...register("last_name", { required: true })}
             className="h-10 rounded-lg border-2 w-full px-5 py-6 border-[#D9D9D9] mt-1 "
-            name="apellido"
+            name="last_name"
           />
         </div>
       </div>
       <div>
-        <label htmlFor="telefono">Teléfono</label>
+        <label htmlFor="telephone">Teléfono</label>
         <input
           type="text"
-          {...register("telefono", { required: true })}
+          {...register("telephone", { required: true })}
           className="h-10 rounded-lg border-2 w-full px-5 py-6 border-[#D9D9D9] mt-1 "
           placeholder="+59 | 1234 123456"
-          name="telefono"
+          name="telephone"
         />
       </div>
       <div>
         <label
           className="  text-[#4e4e4e] font-semibold"
-          htmlFor="user">
+          htmlFor="email">
           Correo Electrónico
         </label>
         <div className="flex items-center h-10 rounded-lg border-2 w-full px-5 py-6 border-[#D9D9D9] mt-1">

@@ -1,8 +1,8 @@
-import { CardHomePage } from "@/components/homepage/CardHomePage";
-import { EventosDestacados } from "@/components/homepage/EventosDestacados";
+import { CardHomePage } from "@/components/homepage/Principal/CardHomePage";
+import { EventosDestacados } from "@/components/homepage/EventosDestacados/EventosDestacados";
 import { HomeBanner } from "@/components/homepage/HomeBanner";
-import { HomeCategories } from "@/components/homepage/HomeCategories";
-import { SearchBarHome } from "@/components/homepage/SearchBarHome";
+import { HomeCategories } from "@/components/homepage/Principal/HomeCategories";
+import { SearchBarHome } from "@/components/homepage/Principal/SearchBarHome";
 import Sponosrs from "@/components/homepage/Sponsors/Sponosrs";
 import Testimonios from "@/components/homepage/Testimonios/Testimonios";
 
@@ -22,8 +22,8 @@ export default function Home() {
       <HomeCategories />
       <EventosDestacados />
       <HomeBanner />
-      <Sponosrs/>
-      <Testimonios/>
+      <Sponosrs />
+      <Testimonios />
     </main>
   );
 }

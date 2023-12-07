@@ -1,5 +1,9 @@
+"use client";
+import { useState } from "react";
+import { CardEventoContainer } from "./CardEventoContainer";
+import { FilterBar } from "./FilterBar";
+import { FilterBarButtons } from "./FilterBarButtons";
 import { Eventos } from "@/helpers/interfaces";
-import Image from "next/image";
 
 const eventos: Eventos[] = [
   {
@@ -41,7 +45,7 @@ const eventos: Eventos[] = [
     popular: true,
     online: true,
   },
-  /*   {
+  {
     nombre: "Evento 4",
     dueño: "Dueño 4",
     categoria: "Categoría 4",
@@ -54,6 +58,7 @@ const eventos: Eventos[] = [
     popular: false,
     online: true,
   },
+
   {
     nombre: "Evento 5",
     dueño: "Dueño 5",
@@ -131,46 +136,27 @@ const eventos: Eventos[] = [
     imagen: "/images/evento1.png",
     popular: true,
     online: true,
-  }, */
+  },
 ];
 
-export const CardEvento = () => {
+export const EventosDestacados = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
-    <article className="flex gap-4 flex-wrap overflow-hidden">
-      {eventos.map((evento) => (
-        <aside
-          key={evento.nombre}
-          className="w-[331px] h-[377px] bg-gradient-to-tr from-pink-600 via-indigo-500 to-indigo-500 rounded-[20px] p-[1px] basis[331px]">
-          <div className="h-[375px] w-full rounded-[20px] bg-white relative">
-            <Image
-              src={evento.imagen}
-              width={329}
-              height={178}
-              alt={`Foto del evento ${evento.nombre}`}
-            />
-            <span className="bg-Azul absolute text-white top-4 left-3 px-2 py-1 text-sm font-bold rounded-[4px]">
-              {evento.fecha}
-            </span>
-            <div className="p-4 flex flex-col gap-[6px]">
-              <h4 className="font-bold text-sm text-Principal uppercase">
-                {evento.categoria}
-              </h4>
-              <h2 className="font-bold text-xl text-black">
-                {evento.nombre} en {evento.location}
-              </h2>
-              <p className="uppercase text-sm font-bold text-[#4E4E4E]">
-                18:00 HS
-              </p>
-              <h3 className="font-bold text-black text-base">
-                A partir de ${evento.precio.toFixed(2)}
-              </h3>
-              <p className="text-[#666666] text-[15px]">
-                By <span className="uppercase">{evento.dueño}</span>
-              </p>
-            </div>
-          </div>
-        </aside>
-      ))}
-    </article>
+    <section className="font-bold text-[42px] py-8 pl-10 ">
+      <h2>Eventos Destacados</h2>
+      <div className="flex justify-between items-center mb-8 border-b pb-2 border-b-slate-400 mr-10">
+        <FilterBar />
+        <FilterBarButtons
+          setCurrentIndex={setCurrentIndex}
+          currentIndex={currentIndex}
+          eventos={eventos}
+        />
+      </div>
+      <CardEventoContainer
+        eventos={eventos}
+        currentIndex={currentIndex}
+      />
+    </section>
   );
 };
