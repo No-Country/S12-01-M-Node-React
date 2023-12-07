@@ -1,17 +1,13 @@
-"use client";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-export const FilterBar = () => {
-  const [value, setValue] = useState<string>("todos");
+interface FilterBarProps {
+  setValue: Dispatch<SetStateAction<string>>;
+}
 
+export const FilterBar = ({ setValue }: FilterBarProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
-
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
-
   return (
     <form className="flex justify-start gap-4">
       <label className="text-xl relative">

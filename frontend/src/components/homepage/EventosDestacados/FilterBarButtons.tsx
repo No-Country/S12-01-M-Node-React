@@ -19,6 +19,7 @@ export const FilterBarButtons = ({
     if (currentIndex < eventos.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
+    return;
   };
 
   const prevCard = () => {
