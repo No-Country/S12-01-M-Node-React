@@ -1,12 +1,14 @@
 "use client";
-import { Eventos } from "@/helpers/interfaces";
 import Image from "next/image";
-import searchButton from "@/assets/svg/SearchLocationIcon.svg";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import searchIcon from "@/assets/svg/SearchIcon.svg";
+import { Eventos } from "@/helpers/interfaces";
 import useSearchBar from "@/hooks/useSearchBar";
 
 const eventosArray: Eventos[] = [
   {
-    nombre: "Concierto A",
+    nombre: "Concierto 1",
     categoria: "Música",
     location: "Ciudad A",
     fecha: "2023-12-01",
@@ -117,29 +119,69 @@ const eventosArray: Eventos[] = [
   },
 ];
 
-export const SearchBarHome = () => {
+export const NavBarHome = () => {
+  const links = [
+    { title: "Eventos", path: "/eventos" },
+    { title: "Crear Eventos", path: "/crear-eventos" },
+  ];
+  const pathname = usePathname();
+
   const { onSubmit, register, handleSubmit, setValue } =
     useSearchBar(eventosArray);
 
   return (
-    <form className="relative w-[458px] h-[60px]">
-      <input
-        type="text"
-        placeholder="Buscar evento..."
-        className="mt-5 border border-[#D9D9D9] px-4 w-[458px] h-[60px] rounded-lg font- font-medium text-sm text-[#666666] focus:outline-none  focus:border-[3px] focus:border-Principal "
-        {...register("search")}
-        onChange={(e) => {
-          setValue("search", e.target.value.toLowerCase());
-        }}
-      />
-      <Image
-        src={searchButton}
-        width={58}
-        height={58}
-        alt="Search Button"
-        className="absolute top-[21px] left-[87%] cursor-pointer"
-        onClick={() => handleSubmit(onSubmit)()}
-      />
-    </form>
+    <header className="h-20 w-full flex items-center pl-10 justify-between border-b[1px] border-b-Principal bg-Principal">
+      <nav className="gap-8 flex items-center justify-start w-1/2">
+        <Link
+          href="/"
+          className="font-extrabold text-3xl text-white">
+          Eventry
+        </Link>
+        <form className="relative">
+          <input
+            type="text"
+            className="w-[350px] h-[50px] rounded-[10px]  bg-pink-500 text-white placeholder-white px-4 focus:outline-none"
+            placeholder="Busca tu evento..."
+            {...register("search")}
+            onChange={(e) => {
+              setValue("search", e.target.value.toLowerCase());
+            }}
+          />
+          <Image
+            src={searchIcon}
+            width={23}
+            height={23}
+            alt="search icon"
+            className="absolute top-[14px] left-[310px]"
+            onClick={() => handleSubmit(onSubmit)()}
+          />
+        </form>
+      </nav>
+      <aside className="flex items-center justify-end w-1/2 gap-8 h-20">
+        {links.map((link) => (
+          <Link
+            className={`text-base font-medium text-white ${
+              link.path === pathname ? "underline" : ""
+            }`}
+            key={link.title}
+            href={link.path}>
+            {link.title}
+          </Link>
+        ))}
+        <div className="w-[300px] flex justify-center gap-4 bg-Azul h-full rounded-tl-xl rounded-bl-xl items-center">
+          <Link
+            href={"/login"}
+            className="text-lg font-semibold text-white">
+            Iniciar Sesión
+          </Link>
+          <p className="font-thin text-white">|</p>
+          <Link
+            href={"/register"}
+            className="text-lg font-semibold text-white">
+            Registrase
+          </Link>
+        </div>
+      </aside>
+    </header>
   );
 };

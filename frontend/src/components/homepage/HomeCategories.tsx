@@ -17,7 +17,7 @@ const categorias = [
 
 export const HomeCategories = () => {
   return (
-    <section className="bg-pink-100 w-full h-[197px] flex justify-center gap-4 items-center">
+    <section className="bg-pink-100 w-full h-[197px] flex justify-center gap-8 items-center">
       {categorias.map((cat) => (
         <div
           key={cat.nombre}

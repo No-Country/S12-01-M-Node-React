@@ -1,4 +1,3 @@
-import React from "react";
 import { roboto } from "@/assets/font";
 import Link from "next/link";
 import RegisterForm from "./formRegister/FormRegister";
@@ -19,7 +18,6 @@ const Register = () => {
           </p>
         </div>
         <RegisterForm />
-
         <div className="my-4">
           <p className="text-sm font-semibold">
             Al registrarme acepto los{" "}

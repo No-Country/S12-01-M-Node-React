@@ -16,7 +16,7 @@ export enum Role {
 
 export interface Eventos {
   nombre: string;
-  dueño?: string;
+  dueño: string;
   categoria: string;
   location: string;
   fecha: string;
@@ -24,6 +24,8 @@ export interface Eventos {
   precio: number;
   comentarios: string[];
   imagen: string;
+  popular?: boolean;
+  online?: boolean;
 }
 
 export interface UserLoginState {
