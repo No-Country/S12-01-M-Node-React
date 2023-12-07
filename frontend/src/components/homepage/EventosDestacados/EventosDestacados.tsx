@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardEventoContainer } from "./CardEventoContainer";
 import { FilterBar } from "./FilterBar";
 import { FilterBarButtons } from "./FilterBarButtons";
@@ -180,6 +180,10 @@ export const EventosDestacados = () => {
     return events;
   };
 
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [value]);
+
   return (
     <section className="font-bold text-[42px] py-8 pl-10 ">
       <h2>Eventos Destacados</h2>
@@ -188,7 +192,7 @@ export const EventosDestacados = () => {
         <FilterBarButtons
           setCurrentIndex={setCurrentIndex}
           currentIndex={currentIndex}
-          eventos={eventos}
+          eventos={filteredEvents(eventos, value)}
         />
       </div>
       <CardEventoContainer
