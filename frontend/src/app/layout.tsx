@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-<<<<<<< HEAD
-import { NavBar } from "@/components/NavBar";
-import FooterComp from "@/components/Footer/footer";
-=======
+import Footer from "@/components/Footer/configFooter";
 import { NavBar } from "@/components/navBar/NavBar";
->>>>>>> 90fc5b326b8b0f234913be7b09edb4b9b469a822
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -25,7 +21,7 @@ export default function RootLayout({
       <body className={dmSans.className}>
         <NavBar />
         {children}
-        <FooterComp/>
+        <Footer/>
       </body>
     </html>
   );

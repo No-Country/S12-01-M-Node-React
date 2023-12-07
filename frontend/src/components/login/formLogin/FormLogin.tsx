@@ -9,7 +9,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import * as regexPatterns from "../../../helpers/Regex";
 
 interface LoginFormInputs {
-  username: string;
+  gmail: string;
   password: string;
 }
 
@@ -24,13 +24,11 @@ const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState<LoginFormInputs | null>(null);
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
-    // Store form data in the state
     setFormData(data);
-    // Simulate the login process
     console.log("Datos de inicio de sesión:", data);
+
   };
 
-  // Log the form data after the component has re-rendered
   useEffect(() => {
     console.log("FormData:", formData);
   }, [formData]);
@@ -42,7 +40,7 @@ const LoginForm: React.FC = () => {
       <div className="my-2">
         <label
           className="  text-[#4e4e4e]"
-          htmlFor="user">
+          htmlFor="gmail">
           {" "}
           Correo Electrónico
         </label>
@@ -51,20 +49,21 @@ const LoginForm: React.FC = () => {
           <EnvelopeIcon className="text-base w-5 h-5 opacity-20" />
           <input
             type="email"
-            {...register("username", {
+            {...register("gmail", {
               required: true,
                          })}
             placeholder="Tu correo electrónico"
             className="ring-transparent ring-0 w-full focus:ring-0 focus:ring-transparent text-[#4e4e4e] outline-none pl-2 appearance-none  "
-            name="user"
+            name="gmail"
+            id="gmail"
           />
         </div>
-        {errors.username && <p>Este campo es requerido y debe ser un correo válido</p>}
+        {errors.gmail && <p>Este campo es requerido y debe ser un correo válido</p>}
       </div>
       <div className="my-4">
         <label
           className="  text-[#4e4e4e]"
-          htmlFor="pass">
+          htmlFor="password">
           Contraseña
         </label>
 
@@ -79,7 +78,8 @@ const LoginForm: React.FC = () => {
             })}
             placeholder="Tu contraseña"
             className="ring-transparent ring-0 w-full focus:ring-0 focus:ring-transparent text-[#4e4e4e] outline-none pl-2 "
-            name="pass"
+            name="password"
+            id="password"
           />
         </div>
         {errors.password && (

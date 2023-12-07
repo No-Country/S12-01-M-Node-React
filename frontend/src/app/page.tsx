@@ -20,13 +20,10 @@ export default function Home() {
         <CardHomePage />
       </section>
       <HomeCategories />
-<<<<<<< HEAD
-      <Sponosrs/>
-      <Testimonios/>
-=======
       <EventosDestacados />
       <HomeBanner />
->>>>>>> 90fc5b326b8b0f234913be7b09edb4b9b469a822
+      <Sponosrs/>
+      <Testimonios/>
     </main>
   );
 }

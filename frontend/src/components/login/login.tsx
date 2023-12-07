@@ -9,7 +9,7 @@ type Props = {};
 
 const Login = (props: Props) => {
   return (
-    <main className=" flex   h-fit">
+    <main className=" flex   h-full">
       <section className=" w-2/3 mx-10 my-auto ">
         <div className="">
           <h2 className={`text-[34px] leading-[51px]  text-${roboto} font-bold`}>Bienvenido nuevamente</h2>
