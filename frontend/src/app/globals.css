@@ -25,3 +25,7 @@
 .radioButtonHomePage {
   @apply absolute left-0 top-0 w-full h-full appearance-none cursor-pointer;
 }
+
+.selectedRadioButton {
+  @apply underline underline-offset-[18px] decoration-4 decoration-Principal;
+}
