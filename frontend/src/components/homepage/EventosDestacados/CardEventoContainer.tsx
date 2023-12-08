@@ -14,9 +14,9 @@ export const CardEventoContainer: React.FC<CardEventoContainerProps> = ({
   return (
     <article className="flex gap-4 overflow-hidden">
       {eventos.map((evento) => (
-        <aside
+        <div
           key={evento.nombre}
-          className="h-[377px] bg-gradient-to-tr from-pink-600 via-indigo-500 to-indigo-500 rounded-[20px] p-[1px] basis[331px] grow-0 shrink-0 relative"
+          className="h-[377px] bg-gradient-to-tr from-pink-600 via-indigo-500 to-indigo-500 rounded-[20px] p-[1px] basis-[331px] grow-0 shrink-0 inline-block relative"
           style={{
             transform: `translateX(${-currentIndex * 100}%)`,
             transition: "transform 0.5s ease",
@@ -58,7 +58,7 @@ export const CardEventoContainer: React.FC<CardEventoContainerProps> = ({
               />
             </div>
           </div>
-        </aside>
+        </div>
       ))}
     </article>
   );
