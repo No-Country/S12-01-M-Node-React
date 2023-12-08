@@ -188,7 +188,10 @@ export const EventosDestacados = () => {
     <section className="font-bold text-[42px] py-8 pl-10 ">
       <h2>Eventos Destacados</h2>
       <div className="flex justify-between items-center mb-8 border-b pb-2 border-b-slate-400 mr-10">
-        <FilterBar setValue={setValue} />
+        <FilterBar
+          setValue={setValue}
+          selectedOption={value}
+        />
         <FilterBarButtons
           setCurrentIndex={setCurrentIndex}
           currentIndex={currentIndex}
