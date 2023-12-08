@@ -5,6 +5,10 @@ import { usePathname } from "next/navigation";
 import searchIcon from "@/assets/svg/SearchIcon.svg";
 import { Eventos } from "@/helpers/interfaces";
 import useSearchBar from "@/hooks/useSearchBar";
+import heartIcon from "@/assets/svg/heartIcon.svg";
+import bellIcon from "@/assets/svg/bellIcon.svg";
+import avatarHome from "@/assets/img/avatarHome.png";
+import arrowDrop from "@/assets/svg/arrowDropDown.svg";
 
 const eventosArray: Eventos[] = [
   {
@@ -120,6 +124,8 @@ const eventosArray: Eventos[] = [
 ];
 
 export const NavBarHome = () => {
+  const isLogged = true;
+  const isUser = true;
   const links = [
     { title: "Eventos", path: "/eventos" },
     { title: "Crear Eventos", path: "/crear-eventos" },
@@ -168,18 +174,49 @@ export const NavBarHome = () => {
             {link.title}
           </Link>
         ))}
-        <div className="w-[300px] flex justify-center gap-4 bg-Azul h-full rounded-tl-xl rounded-bl-xl items-center">
-          <Link
-            href={"/login"}
-            className="text-lg font-semibold text-white">
-            Iniciar Sesión
-          </Link>
-          <p className="font-thin text-white">|</p>
-          <Link
-            href={"/register"}
-            className="text-lg font-semibold text-white">
-            Registrase
-          </Link>
+        <div
+          className={`flex justify-center gap-4 bg-Azul h-full rounded-tl-xl rounded-bl-xl items-center ${
+            isLogged ? "w-[410px]" : "w-[300px]"
+          }`}>
+          {isLogged ? (
+            <div className="flex gap-8 items-center justify-around">
+              <Image
+                src={bellIcon}
+                alt="Notificaciones"
+              />
+              {isUser && (
+                <Image
+                  src={heartIcon}
+                  alt="Favoritos"
+                />
+              )}
+              <div className="w-[224px] h-[61px] bg-blue-400 rounded-full flex items-center justify-around">
+                <Image
+                  src={avatarHome}
+                  alt="avatar"
+                />
+                <p className="text-lg font-medium text-white">Sara Gradial</p>
+                <Image
+                  src={arrowDrop}
+                  alt="drop down"
+                />
+              </div>
+            </div>
+          ) : (
+            <>
+              <Link
+                href={"/login"}
+                className="text-lg font-semibold text-white">
+                Iniciar Sesión
+              </Link>
+              <p className="font-thin text-white">|</p>
+              <Link
+                href={"/register"}
+                className="text-lg font-semibold text-white">
+                Registrase
+              </Link>
+            </>
+          )}
         </div>
       </aside>
     </header>
