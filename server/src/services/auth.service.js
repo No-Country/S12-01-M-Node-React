@@ -1,13 +1,30 @@
-import userModel from "../models/user.model.js";
-
-import AppError from "../helpers/appError.js";
-import {generateAndSignToken} from "../helpers/jwt.js";
-import {encryptPassword} from "../helpers/encrypt.js";
-
 import passport from "passport";
+import userModel from "../models/user.model.js";
+import jwt from "passport-jwt"
 import local from "passport-local"
+import AppError from "../helpers/appError.js";
+import {encryptPassword} from "../helpers/encrypt.js";
+import config from "../config.js";
+
+const { JWT_SECRET, COOKIE_NAME} = config;
 
 const LocalStrategy = local.Strategy;
+
+const JwtStrategy = jwt.Strategy;
+const ExtractJwt = jwt.ExtractJwt; // jwt tiene una opcion extractjwt para extraer el jwt
+
+const cookieExtractor = (req) => {
+    let token = null;
+    if (req && req.cookies){
+        token = req.cookies[COOKIE_NAME]
+    }
+    return token;
+}
+
+const jwtOptions = {
+    secretOrKey: JWT_SECRET,
+    jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
+} 
 
 const initializePassport = ( ) =>{
     passport.use(
@@ -46,6 +63,17 @@ const initializePassport = ( ) =>{
             }
         }
     ));
+
+    passport.use(
+        'jwt', 
+        new JwtStrategy(jwtOptions, async (jwt_payload,done) =>{
+        try {
+            return done(null, jwt_payload)
+        } catch (error) {
+            return done(error);
+        }
+    })
+    );
 
     passport.serializeUser((user, done) => {
         done(null, user._id);
