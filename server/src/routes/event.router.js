@@ -4,7 +4,8 @@ import {
     eventsById,
     createEvents,
     updateEvents,
-    deleteEvents
+    deleteEvents,
+    eventsByCategories
 } from '../controllers/event.controllers.js';
 
 const eventRouter = Router();
@@ -18,5 +19,7 @@ eventRouter.post('/createEvents', createEvents);
 eventRouter.put('/updateEvents/:_id',updateEvents);
 
 eventRouter.delete('/deleteEvents/:_id',deleteEvents);
+
+eventRouter.get('/eventsByCategories/:categories',eventsByCategories);
 
 export default eventRouter;
