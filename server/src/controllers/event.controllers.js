@@ -72,3 +72,46 @@ export const deleteEvents = async (req,res) => {
         res.status(500).json({error : "Error al eliminar el evento"});
     }
 }
+
+// Filtres :
+
+export const eventsByCategories = async (req,res) =>{
+    try{
+        const {categories} = req.params;
+
+        const event = await Event.find({categories : categories});
+
+        if (event) {
+            res.status(200).send({message : "Eventos encontrados " , event : event});
+        }else {
+            res.status(400).status({message : "Eventos no encontrados "});
+        }
+    }catch(error){
+        res.status(500).send({ message : "Eventos no encontrados "})
+    }
+}
+
+export const eventsByLocation = async (req,res) =>{
+    try{
+        const {location} = req.params;
+
+        const event = await Event.find({location : location});
+
+        if (event) {
+            res.status(200).send({message : "Eventos encontrados ", evento : event});
+        }else{
+            res.status(400).status({message : "Eventos no encontrados "})
+        }
+    }catch(error){
+        
+    }
+}
+
+export const eventsByPrices = async (req,res) =>{
+    try{
+        
+    }catch(error){
+        
+    }
+}
+
