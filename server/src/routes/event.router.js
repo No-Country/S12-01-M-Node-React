@@ -15,8 +15,8 @@ eventRouter.get('/:_id', eventsById);
 
 eventRouter.post('/createEvents', createEvents);
 
-eventRouter.put('/updateEvents',updateEvents);
+eventRouter.put('/updateEvents/:_id',updateEvents);
 
-eventRouter.delete('/deleteEvents',deleteEvents);
+eventRouter.delete('/deleteEvents/:_id',deleteEvents);
 
 export default eventRouter;

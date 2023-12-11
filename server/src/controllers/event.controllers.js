@@ -40,16 +40,20 @@ export const createEvents = async (req, res) => {
 export const updateEvents = async (req,res) => {
     try{
         const _id = req.params;
-        const updateEvent = await Event.findByIdAndDelete(_id);
+        const updatedata = req.body;
+
+        const updateEvent = await Event.findByIdAndUpdate(_id,updatedata,{
+            new:true,
+        });
 
         if (!updateEvent) {
             return res.status(404).json({error : "Evento no encontrado"});
         }else{
-            res.status(200).json({ message : "Evento eliminado existosamente ."});
+            res.status(200).json({ message : "Evento actualizado existosamente ."});
         }
 
     }catch(error){
-        res.status(500).json({error:"Error al eliminar el evento."});
+        res.status(500).json({error:"Error al actualizar el evento."});
     }
 }
 
