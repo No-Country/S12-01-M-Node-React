@@ -1,4 +1,3 @@
-import { HomeCategories } from "../homepage/Principal/HomeCategories";
 import { SearchBarUbicacion } from "./SearchBarUbicacion";
 
 export const EventosPorUbicacion = () => {

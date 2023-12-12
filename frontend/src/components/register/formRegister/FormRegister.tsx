@@ -26,25 +26,22 @@ const RegisterForm = () => {
   } = useForm<RegisterFormInputs>();
 
   const onSubmit = async (data: RegisterFormInputs) => {
-    console.log(data);
     try {
       const res = await fetch(`${MAIN_ROUTE}${REGISTER_ROUTE}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "same-origin",
         body: JSON.stringify({
           first_name: data.first_name,
           last_name: data.last_name,
           telephone: data.telephone,
           email: data.email,
           password: data.password,
-          role: Role.user,
         }),
       });
-      console.log(res);
       if (res.ok) {
-        console.log(res);
         const responseData = await res.json();
         console.log("Respuesta del servidor:", responseData);
         reset();
