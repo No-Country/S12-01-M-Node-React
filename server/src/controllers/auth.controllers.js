@@ -1,4 +1,4 @@
-import loginUser from '../services/user.service.js';
+import { loginUser } from '../services/user.service.js';
 import catchASync from '../helpers/catchAsycn.js  ';
 import { success } from '../helpers/serverResponses.js';
 import { error } from '../helpers/serverResponses.js';

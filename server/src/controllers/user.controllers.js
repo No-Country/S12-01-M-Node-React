@@ -6,7 +6,7 @@ import {
     deleteUser,
 } from '../services/user.service.js';
 
-const getUsers = catchAsync(async (req, res) => {
+export const getUsers = catchAsync(async (req, res) => {
     const users = await getAllUsers();
 
     success({
@@ -16,7 +16,7 @@ const getUsers = catchAsync(async (req, res) => {
     });
 });
 
-const updatedUser = catchAsync(async (req, res, next) => {
+export const updatedUser = catchAsync(async (req, res, next) => {
     const userId = req.params.id;
     const updatedUserData = req.body;
 
@@ -28,18 +28,12 @@ const updatedUser = catchAsync(async (req, res, next) => {
     });
 });
 
-const deletedUser = catchAsync(async (req, res, next) => {
+export const deletedUser = catchAsync(async (req, res, next) => {
     const userId = req.params.id;
     const deactivatedUser = await deleteUser(userId);
     success({
         res,
-        message: 'User deactivated successfully',
+        message: 'User successfully deleted',
         data: deactivatedUser,
     });
 });
-
-export default {
-    getUsers,
-    updatedUser,
-    deletedUser,
-};

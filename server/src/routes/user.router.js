@@ -1,23 +1,29 @@
 import express from 'express';
 import passport from 'passport';
-import getUsers from '../services/user.service.js';
-import updateUser from '../services/user.service.js';
-import deleteUser from '../services/user.service.js';
+import {
+    getUsers,
+    updatedUser,
+    deletedUser,
+} from '../controllers/user.controllers.js';
 
 const router = express.Router();
 
-router.get('/', passport.authenticate('jwt', { session: false }), getUsers);
+router.get(
+    '/all-users',
+    passport.authenticate('jwt', { session: false }),
+    getUsers,
+);
 
 router.put(
     '/:id',
     passport.authenticate('jwt', { session: false }),
-    updateUser,
+    updatedUser,
 );
 
 router.put(
     '/delete/:id',
     passport.authenticate('jwt', { session: false }),
-    deleteUser,
+    deletedUser,
 );
 
 export default router;

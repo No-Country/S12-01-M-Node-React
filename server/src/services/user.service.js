@@ -8,7 +8,7 @@ import { UserDTO } from '../utils/user.dto.js';
 import config from '../config.js';
 const { COOKIE_NAME, JWT_SECRET } = config;
 
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await userModel.findOne({ email: email });
@@ -93,5 +93,3 @@ export const deleteUser = async (userId) => {
         throw new AppError(`Error deactivating user: ${error.message}`, 500);
     }
 };
-
-export default loginUser;
