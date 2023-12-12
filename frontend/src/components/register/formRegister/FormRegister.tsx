@@ -42,7 +42,9 @@ const RegisterForm = () => {
           role: Role.user,
         }),
       });
+      console.log(res);
       if (res.ok) {
+        console.log(res);
         const responseData = await res.json();
         console.log("Respuesta del servidor:", responseData);
         reset();
