@@ -6,10 +6,9 @@ import config from "./config.js";
 import connectDB from "./database/db.js"
 import initializePassport from "./services/auth.service.js";
 
-import router from "./routes/index.js";
+import router from './routes/index.js';
 
-
-const {PORT} = config || 8080;
+const { PORT } = config || 8080;
 
 const app = express();
 app.use(cors({
@@ -17,20 +16,17 @@ app.use(cors({
     credentials: true,
 }));
 app.use(express.json());
-app.use(express.urlencoded({ extended : true}));
+app.use(express.urlencoded({ extended: true }));
 
 initializePassport();
 app.use(passport.initialize());
 
 app.use(cookieParser());
 
+app.use('/api/v1', router);
 
-app.use("/api/v1", router);
-
-
-
-const httpServer = app.listen(PORT, ()=> {
+const httpServer = app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
-})
+});
 
 connectDB();

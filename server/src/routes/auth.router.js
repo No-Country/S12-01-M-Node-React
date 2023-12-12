@@ -7,14 +7,14 @@ import { loginUser } from "../services/user.service.js";
 
 const router = Router();
 
+router.post(
+    '/register',
+    passport.authenticate('register', { session: false }),
+    register,
+);
 
-router.post("/register", passport.authenticate("register", { session: false }), register)
+router.post('/login', loginUser);
 
-router.post("/login", loginUser);
-
-router.get("/logout", logout)
+router.get('/logout', logout);
 
 export default router;
-
-
-
