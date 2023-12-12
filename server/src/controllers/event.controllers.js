@@ -5,7 +5,7 @@ export const allEvents = async (req, res) => {
         const events = await Event.find();
         res.status(200).json(events);
     } catch (error) {
-        res.status(500).json({ error: 'Error al obtener los eventos' });
+        res.status(500).json({ error: 'Error getting events' });
     }
 };
 
@@ -14,12 +14,12 @@ export const eventsById = async (req, res) => {
     try {
         const event = await Event.findById(_id);
         if (!event) {
-            res.status(404).json({ error: 'Evento no encontrado ' });
+            res.status(404).json({ error: 'Event not found' });
         } else {
             res.status(200).json(event);
         }
     } catch (error) {
-        res.status(500).json({ error: 'Error al obtener el evento ' });
+        res.status(500).json({ error: 'Error getting event' });
     }
 };
 
@@ -33,7 +33,7 @@ export const createEvents = async (req, res) => {
 
         res.status(200).json(newEvent);
     } catch (error) {
-        res.status(500).json({ error: 'error al crear el evento' });
+        res.status(500).json({ error: 'Error creating event' });
     }
 };
 
@@ -47,13 +47,13 @@ export const updateEvents = async (req,res) => {
         });
 
         if (!updateEvent) {
-            return res.status(404).json({error : "Evento no encontrado"});
+            return res.status(404).json({error : "Event not found"});
         }else{
-            res.status(200).json({ message : "Evento actualizado existosamente ."});
+            res.status(200).json({ message : "Successfully updated event"});
         }
 
     }catch(error){
-        res.status(500).json({error:"Error al actualizar el evento."});
+        res.status(500).json({error:"Error updating event"});
     }
 }
 
@@ -64,12 +64,12 @@ export const deleteEvents = async (req,res) => {
         const deleteEvent = await Event.findByIdAndDelete(_id);
 
         if (!deleteEvent) {
-            return res.status(404).json({error : "Evento no encontrado"});
+            return res.status(404).json({error : "Event not found"});
         }else{
-            res.status(200).json({message : "Evento eliminado existosamente"});
+            res.status(200).json({message : "Successfully deleted event"});
         }
     }catch(error){
-        res.status(500).json({error : "Error al eliminar el evento"});
+        res.status(500).json({error : "Error deleting event"});
     }
 }
 
@@ -84,10 +84,10 @@ export const eventsByCategories = async (req,res) =>{
         if (event) {
             res.status(200).json(event);
         }else{
-            res.status(404).send({message : "Eventos no encontrados "});
+            res.status(404).send({message : "Events not found"});
         }
     }catch(error){
-        res.status(500).send({ message : "Eventos no encontrados "})
+        res.status(500).send({ message : "Events not found"})
     }
 }
 
@@ -100,10 +100,10 @@ export const eventsByLocation = async (req,res) =>{
         if (event) {
             res.status(200).json(event);
         }else{
-            res.status(404).send({message : "Eventos no encontrados "})
+            res.status(404).send({message : "Events not found"})
         }
     }catch(error){
-        res.status(500).send({ message : "Eventos no encontrados "});
+        res.status(500).send({ message : "Events not found "});
     }
 }
 
@@ -116,10 +116,10 @@ export const eventsByPrices = async (req,res) =>{
         if (event) {
             res.status(200).json(event);
         }else{
-            res.status(404).send({message : "Eventos no encontrados"})
+            res.status(404).send({message : "Events not found"})
         }
     }catch(error){
-        res.status(500).send({ message : "Eventos no encontrados "});
+        res.status(500).send({ message : "Events not found "});
     }
 }
 
