@@ -9,8 +9,8 @@ const router = Router();
 
 // Get single tocket by it's id and it's user id
 // params: userid  (ObjectId string)
-// query: ?reference=   (UUID string)
-router.get('/:userid', passport.authenticate('jwt', { session: false }), getSingleTicketValidate, getSingleTicketController);
+// params: reference   (UUID string)
+router.get('/:userid/:reference', passport.authenticate('jwt', { session: false }), getSingleTicketValidate, getSingleTicketController);
 
 // Get all tickets by it's user id
 // params: userid  (ObjectId string)

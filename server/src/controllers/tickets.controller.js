@@ -2,8 +2,7 @@ import { createTicketService, getUser, ticketAlreadyExists } from "../services/t
 
 export const getSingleTicketController = async (req, res) => {
     try {
-        const { userid } = req.params;
-        const { reference } = req.query;
+        const { userid, reference } = req.params;
         const user = await getUser(userid);
 
         if (!user.tickets || user.tickets.length === 0) throw new Error(`No ticket registered for ${user.first_name}`);

@@ -8,7 +8,7 @@ export const getSingleTicketValidate = [
         .custom((value) => {
             return mongoose.isValidObjectId(value)
         }).withMessage('userid query must be an ObjectId'),
-    query('reference')
+    param('reference')
         .notEmpty()
         .withMessage('reference number is required')
         .custom((value) => {
