@@ -12,7 +12,7 @@ const { PORT } = config || 8080;
 
 const app = express();
 app.use(cors({
-    origin: '*',
+    origin: ['http://localhost:3000/', 'https://eventry-one.vercel.app/'],
     credentials: true,
 }));
 app.use(express.json());
