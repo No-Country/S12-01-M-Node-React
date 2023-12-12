@@ -35,11 +35,11 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'event_manager'],
         default: 'user',
     },
-    ticket: [
+    tickets: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Ticket',
-        },
+        }
     ],
     isActive: {
         type: Boolean,

@@ -11,7 +11,10 @@ import router from './routes/index.js';
 const { PORT } = config || 8080;
 
 const app = express();
-
+app.use(cors({
+    origin: '*',
+    credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

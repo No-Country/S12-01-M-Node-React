@@ -1,7 +1,6 @@
 import userModel from '../models/user.model.js';
 import { comparePassword } from '../helpers/encrypt.js';
 import AppError from '../helpers/appError.js';
-import { generateAndSignToken } from '../helpers/jwt.js';
 import jwt from 'jsonwebtoken';
 import { UserDTO } from '../utils/user.dto.js';
 
