@@ -64,7 +64,7 @@ export const deleteEvents = async (req,res) => {
         const deleteEvent = await Event.findByIdAndDelete(_id);
 
         if (!deleteEvent) {
-            return res.status(404).json({erro : "Evento no encontrado"});
+            return res.status(404).json({error : "Evento no encontrado"});
         }else{
             res.status(200).json({message : "Evento eliminado existosamente"});
         }
@@ -82,9 +82,9 @@ export const eventsByCategories = async (req,res) =>{
         const event = await Event.find({categories : categories});
 
         if (event) {
-            res.status(200).send({message : "Eventos encontrados " , event : event});
-        }else {
-            res.status(400).status({message : "Eventos no encontrados "});
+            res.status(200).json(event);
+        }else{
+            res.status(404).send({message : "Eventos no encontrados "});
         }
     }catch(error){
         res.status(500).send({ message : "Eventos no encontrados "})
@@ -98,20 +98,28 @@ export const eventsByLocation = async (req,res) =>{
         const event = await Event.find({location : location});
 
         if (event) {
-            res.status(200).send({message : "Eventos encontrados ", evento : event});
+            res.status(200).json(event);
         }else{
-            res.status(400).status({message : "Eventos no encontrados "})
+            res.status(404).send({message : "Eventos no encontrados "})
         }
     }catch(error){
-        
+        res.status(500).send({ message : "Eventos no encontrados "});
     }
 }
 
 export const eventsByPrices = async (req,res) =>{
     try{
-        
+        const {price} = req.params;
+
+        const event = await Event.find({price : price });
+
+        if (event) {
+            res.status(200).json(event);
+        }else{
+            res.status(404).send({message : "Eventos no encontrados"})
+        }
     }catch(error){
-        
+        res.status(500).send({ message : "Eventos no encontrados "});
     }
 }
 
