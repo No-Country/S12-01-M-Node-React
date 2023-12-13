@@ -1,6 +1,7 @@
 import { Eventos } from "@/helpers/interfaces";
 import Image from "next/image";
 import favoriteWhiteIcon from "@/assets/svg/FavoriteWhite.svg";
+import Link from "next/link";
 
 interface CardEventoContainerProps {
   eventos: Eventos[];
@@ -56,9 +57,11 @@ export const CardEventoContainer: React.FC<CardEventoContainerProps> = ({
                 <h3 className="font-bold text-black text-base">
                   A partir de ${evento.precio.toFixed(2)}
                 </h3>
-                <button className="w-[110px] h-[40px] bg-Principal text-white text-center text-base font-medium rounded-2xl">
+                <Link
+                  href={"/eventodetail"}
+                  className="w-[110px] h-[40px] bg-Principal text-white text-center text-base font-medium rounded-2xl py-2">
                   Ver Evento
-                </button>
+                </Link>
               </div>
             </div>
           </div>

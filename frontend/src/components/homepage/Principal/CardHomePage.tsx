@@ -1,7 +1,9 @@
 import { Eventos } from "@/helpers/interfaces";
 import Image from "next/image";
+import Link from "next/link";
 
 const evento: Eventos = {
+  id: "abdc",
   nombre: "Winona Riders + Fonso",
   dueño: "Indie Folks",
   categoria: "Música",
@@ -42,9 +44,11 @@ export const CardHomePage = () => {
           </p>
         </div>
       </div>
-      <h2 className="w-full text-center font-bold uppercase text-white mt-3">
-        Ver Evento
-      </h2>
+      <Link href={"/eventodetail"}>
+        <h2 className="w-full text-center font-bold uppercase text-white mt-3">
+          Ver Evento
+        </h2>
+      </Link>
     </aside>
   );
 };

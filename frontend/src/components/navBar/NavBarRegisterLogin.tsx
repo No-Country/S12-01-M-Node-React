@@ -22,7 +22,9 @@ export const NavBarRegisterLogin = () => {
         {links.map((link) => (
           <Link
             className={`text-base font-medium text-white ${
-              link.path === pathname ? "underline" : ""
+              link.path === pathname
+                ? "underline underline-offset-[16px] decoration-4"
+                : ""
             }`}
             key={link.title}
             href={link.path}>
