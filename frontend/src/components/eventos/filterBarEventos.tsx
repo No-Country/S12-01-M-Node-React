@@ -1,5 +1,4 @@
 "use client";
-import { Eventos } from "@/helpers/interfaces";
 import { Dispatch, SetStateAction } from "react";
 
 interface FilterBarEventosProps {
