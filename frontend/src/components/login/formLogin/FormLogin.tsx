@@ -1,27 +1,26 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { roboto } from '@/assets/font';
-import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import * as regexPatterns from '../../../helpers/Regex';
-import { LOGIN_ROUTE, MAIN_ROUTE } from '@/routes';
-import { useRouter } from 'next/navigation';
-import useUser from '@/store/loginStore';
-import { Role } from '@/helpers/interfaces';
+"use client";
+import { useState, useEffect } from "react";
+import { roboto } from "@/assets/font";
+import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/20/solid";
+import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import * as regexPatterns from "../../../helpers/Regex";
+import { LOGIN_ROUTE, MAIN_ROUTE } from "@/routes";
+import { useRouter } from "next/navigation";
+import useUser from "@/store/loginStore";
+import { Role } from "@/helpers/interfaces";
 
 interface LoginFormInputs {
   gmail: string;
   password: string;
 }
 
-
 const LoginForm: React.FC = () => {
   const router = useRouter();
-  const { setLogin } = useUser() 
-  
+  const { setLogin } = useUser();
+
   const {
-        register,
+    register,
     handleSubmit,
     formState: { errors },
     reset,
@@ -30,11 +29,11 @@ const LoginForm: React.FC = () => {
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     try {
       const res = await fetch(`${MAIN_ROUTE}${LOGIN_ROUTE}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        credentials: 'same-origin',
+        credentials: "same-origin",
         body: JSON.stringify({
           email: data.gmail,
           password: data.password,
@@ -42,19 +41,19 @@ const LoginForm: React.FC = () => {
       });
       if (res.ok) {
         const responseData = await res.json();
-        console.log('Respuesta del servidor:', responseData);
+        console.log("Respuesta del servidor:", responseData);
         reset();
-        router.push("/")
+        router.push("/");
         setLogin({
           usuario: {
-                id: responseData.payload._id,
-                nombre: responseData.payload.name,
-                email: responseData.payload.email,
-                telefono: responseData.payload.telephone,
-                role: responseData.payload.role   ,
-
-              },
-              isLogged: true,})
+            id: responseData.payload._id,
+            nombre: responseData.payload.name,
+            email: responseData.payload.email,
+            telefono: responseData.payload.telephone,
+            role: responseData.payload.role,
+          },
+          isLogged: true,
+        });
         return responseData;
       } else {
         return Promise.reject({
@@ -64,19 +63,19 @@ const LoginForm: React.FC = () => {
         });
       }
     } catch (err) {
-      console.error('Respuesta erronea:', err);
+      console.error("Respuesta erronea:", err);
       return err;
     }
   };
 
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`flex flex-col text-${roboto}`}
-    >
+      className={`flex flex-col text-${roboto}`}>
       <div className="my-2">
-        <label className="  text-[#4e4e4e]" htmlFor="gmail">
+        <label
+          className="  text-[#4e4e4e]"
+          htmlFor="gmail">
           Correo Electrónico
         </label>
 
@@ -84,7 +83,7 @@ const LoginForm: React.FC = () => {
           <EnvelopeIcon className="text-base w-5 h-5 opacity-20" />
           <input
             type="email"
-            {...register('gmail', {
+            {...register("gmail", {
               required: true,
             })}
             placeholder="Tu correo electrónico"
@@ -98,7 +97,9 @@ const LoginForm: React.FC = () => {
         )}
       </div>
       <div className="my-4">
-        <label className="text-[#4e4e4e]" htmlFor="password">
+        <label
+          className="text-[#4e4e4e]"
+          htmlFor="password">
           Contraseña
         </label>
 
@@ -107,7 +108,7 @@ const LoginForm: React.FC = () => {
 
           <input
             type="password"
-            {...register('password', {
+            {...register("password", {
               required: true,
             })}
             placeholder="Tu contraseña"
@@ -126,8 +127,7 @@ const LoginForm: React.FC = () => {
       </div>
       <button
         type="submit"
-        className="py-[10px] px-6 bg-[#be316c] hover:bg-[#cf4f85] duration-300 rounded-lg font-medium text-xl text-white"
-      >
+        className="py-[10px] px-6 bg-[#be316c] hover:bg-[#cf4f85] duration-300 rounded-lg font-medium text-xl text-white">
         Iniciar Sesión
       </button>
     </form>
