@@ -4,22 +4,22 @@ import heartIcon from "@/assets/svg/heartIcon.svg";
 import bellIcon from "@/assets/svg/bellIcon.svg";
 import avatarHome from "@/assets/img/avatarHome.png";
 import arrowDrop from "@/assets/svg/arrowDropDown.svg";
+import useUser from "@/store/loginStore";
 
 export const LoggedInfo = () => {
-  const isLogged = true;
-  const isUser = true;
+  const logged = useUser((state) => state.loginInfo);
   return (
     <div
       className={`flex justify-center gap-4 bg-Azul h-full rounded-tl-xl rounded-bl-xl items-center ${
-        isLogged ? "w-[410px]" : "w-[300px]"
+        logged.isLogged ? "w-[410px]" : "w-[300px]"
       }`}>
-      {isLogged ? (
+      {logged.isLogged  ? (
         <div className="flex gap-8 items-center justify-around">
           <Image
             src={bellIcon}
             alt="Notificaciones"
           />
-          {isUser && (
+          {logged.usuario.role === 1 && (
             <Image
               src={heartIcon}
               alt="Favoritos"
@@ -30,7 +30,7 @@ export const LoggedInfo = () => {
               src={avatarHome}
               alt="avatar"
             />
-            <p className="text-lg font-medium text-white">Sara Gradial</p>
+            <p className="text-lg font-medium text-white capitalize">{logged.usuario.nombre}</p>
             <Image
               src={arrowDrop}
               alt="drop down"

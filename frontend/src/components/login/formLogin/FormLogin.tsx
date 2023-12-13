@@ -7,6 +7,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import * as regexPatterns from '../../../helpers/Regex';
 import { LOGIN_ROUTE, MAIN_ROUTE } from '@/routes';
 import { useRouter } from 'next/navigation';
+import useUser from '@/store/loginStore';
+import { Role } from '@/helpers/interfaces';
 
 interface LoginFormInputs {
   gmail: string;
@@ -16,6 +18,8 @@ interface LoginFormInputs {
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
+  const { setLogin } = useUser() 
+  
   const {
         register,
     handleSubmit,
@@ -26,7 +30,7 @@ const LoginForm: React.FC = () => {
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     try {
       const res = await fetch(`${MAIN_ROUTE}${LOGIN_ROUTE}`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -40,7 +44,17 @@ const LoginForm: React.FC = () => {
         const responseData = await res.json();
         console.log('Respuesta del servidor:', responseData);
         reset();
-        router.push("/dash")
+        router.push("/")
+        setLogin({
+          usuario: {
+                id: responseData.payload._id,
+                nombre: responseData.payload.name,
+                email: responseData.payload.email,
+                telefono: responseData.payload.telephone,
+                role: responseData.payload.role   ,
+
+              },
+              isLogged: true,})
         return responseData;
       } else {
         return Promise.reject({
@@ -74,7 +88,7 @@ const LoginForm: React.FC = () => {
               required: true,
             })}
             placeholder="Tu correo electrónico"
-            className="ring-transparent ring-0 w-full focus:ring-0 focus:ring-transparent text-[#4e4e4e] outline-none pl-2 appearance-none"
+            className="ring-transparent ring-0 w-full focus:ring-0 focus:ring-transparent text-[#4e4e4e] outline-none pl-2 appearance-none autofill:bg-transparent"
             name="gmail"
             id="gmail"
           />

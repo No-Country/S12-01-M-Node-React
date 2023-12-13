@@ -3,9 +3,11 @@ import { create } from "zustand";
 
 interface UserState {
   loginInfo: {
-    usuario: Usuario;
+    usuario: Usuario;                                                                                                                                                                                                                                                                                                                                                                                                    
     isLogged: boolean;
-  };
+      };
+  setLogin: (newLogin: UserState['loginInfo']) => void; 
+  setLogOut: () => void; 
 }
 
 const useUser = create<UserState>()((set) => ({
@@ -13,16 +15,16 @@ const useUser = create<UserState>()((set) => ({
     usuario: {
       id: "",
       nombre: "",
-      apellido: "",
+      // apellido: "",
       email: "",
       telefono: "",
-      favoritos: [],
+      // favoritos: [],
       role: Role.user,
     },
     isLogged: false,
   },
-  setLogin: (newLogin: UserState) => {
-    set({ loginInfo: newLogin.loginInfo });
+  setLogin: (newLogin: UserState['loginInfo']) => {
+    set((prevState) => ({ loginInfo: { ...prevState.loginInfo, ...newLogin } }));
   },
   setLogOut: () => {
     set({
@@ -30,11 +32,11 @@ const useUser = create<UserState>()((set) => ({
         usuario: {
           id: "",
           nombre: "",
-          apellido: "",
+          // apellido: "",
           email: "",
           password: "",
           telefono: "",
-          favoritos: [],
+          // favoritos: [],
           role: Role.user,
         },
         isLogged: false,
