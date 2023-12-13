@@ -29,3 +29,6 @@
 .selectedRadioButton {
   @apply underline underline-offset-[18px] decoration-4 decoration-Principal;
 }
+.selectedRadioButtonEventos {
+  @apply underline underline-offset-[24px] decoration-4 decoration-Principal;
+}
