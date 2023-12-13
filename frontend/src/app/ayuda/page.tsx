@@ -1,5 +1,7 @@
+import AyudaComp from "@/components/AyudaComp"
+
 const AyudaPage = () => {
-  return <div>Ayuda Page</div>;
+  return <AyudaComp/>;
 };
 
 export default AyudaPage;

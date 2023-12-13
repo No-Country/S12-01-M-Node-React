@@ -3,6 +3,8 @@ import { FaFacebookF , FaRegEnvelope, FaTwitter, FaYoutube } from 'react-icons/f
 import { AiOutlineYoutube  } from 'react-icons/ai'
 import Link from 'next/link'
 import { roboto } from '@/assets/font'
+import LinksInteres from './FooterComps/LinksInteres'
+import LinksMenu from './FooterComps/LinksMenu'
 
 type Props = {}
 
@@ -20,35 +22,10 @@ const FooterComp = (props: Props) => {
                 </div>
             </section>
             <section className='  flex  justify-center items-start   mx-10 flex-row-reverse flex-1'>
-                <div className=' w-full ml-4 '>
+        
+         <LinksInteres/>
 
-            <span className='font-medium text-lg uppercase  '>De interés</span>
-            <div className='w-fit flex flex-col justify-center items-start'>
-                <nav>
-                    <ul>
-                        <li className='cursor-pointer  py-2 '><Link className='  hover:border-b-2 hover:border-b-white' href={"/"}>Términos y Condiciones</Link></li>
-                        <li className='cursor-pointer  py-2 '><Link className='  hover:border-b-2 hover:border-b-white' href={"/"}>Políticas de Privacidad</Link></li>
-                   
-                    </ul>
-                </nav>
-            </div> 
-                </div>
-
-            <div className=' w-full ml-4 '>
-
-            <span className='font-medium text-lg uppercase'>Menu</span>
-
-            <div className='w-fit flex flex-col justify-center items-start'>
-                <nav>
-                    <ul>
-                    <li className='cursor-pointer  py-2 '><Link className='  hover:border-b-2 hover:border-b-white' href={"/"}>Inicio</Link></li>
-                        <li className='cursor-pointer  py-2 '><Link className='  hover:border-b-2 hover:border-b-white' href={"/"}>Eventos</Link></li>
-                        <li className='cursor-pointer  py-2 '><Link className='  hover:border-b-2 hover:border-b-white' href={"/"}>Ayuda</Link></li>
-                   
-                    </ul>
-                </nav>
-            </div>
-            </div>
+           <LinksMenu/>
               
         
 
