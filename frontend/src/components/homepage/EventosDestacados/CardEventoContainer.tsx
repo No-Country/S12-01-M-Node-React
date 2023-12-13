@@ -1,6 +1,6 @@
-import shareIcon from "@/assets/svg/shareIcon.svg";
 import { Eventos } from "@/helpers/interfaces";
 import Image from "next/image";
+import favoriteWhiteIcon from "@/assets/svg/FavoriteWhite.svg";
 
 interface CardEventoContainerProps {
   eventos: Eventos[];
@@ -21,6 +21,12 @@ export const CardEventoContainer: React.FC<CardEventoContainerProps> = ({
             transform: `translateX(${-currentIndex * 100}%)`,
             transition: "transform 0.5s ease",
           }}>
+          <span className="w-11 h-11 rounded-full border border-black-300 absolute z-10 flex items-center justify-center top-3 right-3">
+            <Image
+              src={favoriteWhiteIcon}
+              alt="agregar a favoritos"
+            />
+          </span>
           <div className="h-[375px] w-full rounded-[20px] bg-white relative">
             <Image
               src={evento.imagen}
@@ -32,30 +38,28 @@ export const CardEventoContainer: React.FC<CardEventoContainerProps> = ({
               {evento.fecha}
             </span>
             <div className="p-4 flex flex-col gap-[6px]">
-              <h4 className="font-bold text-sm text-Principal uppercase">
-                {evento.categoria}
-              </h4>
+              <div className="flex justify-between items-center">
+                <h4 className="font-bold text-sm text-Principal uppercase">
+                  {evento.categoria}
+                </h4>
+                <p className="uppercase text-sm font-bold text-[#4E4E4E]">
+                  18:00 HS
+                </p>
+              </div>
               <h2 className="font-bold text-xl text-black">
                 {evento.nombre} en {evento.location}
               </h2>
-              <p className="uppercase text-sm font-bold text-[#4E4E4E]">
-                18:00 HS
-              </p>
-              <h3 className="font-bold text-black text-base">
-                A partir de ${evento.precio.toFixed(2)}
-              </h3>
               <p className="text-[#666666] text-[15px]">
                 By <span className="uppercase">{evento.dueño}</span>
               </p>
-            </div>
-            <div className="w-[50px] h-[50px] flex items-center justify-center bg-Principal rounded-full p-4 absolute bottom-8 right-3">
-              <Image
-                src={shareIcon}
-                alt="compartir"
-                width={34}
-                height={34}
-                className="object-contain"
-              />
+              <div className="flex justify-between items-center">
+                <h3 className="font-bold text-black text-base">
+                  A partir de ${evento.precio.toFixed(2)}
+                </h3>
+                <button className="w-[110px] h-[40px] bg-Principal text-white text-center text-base font-medium rounded-2xl">
+                  Ver Evento
+                </button>
+              </div>
             </div>
           </div>
         </div>
