@@ -6,7 +6,7 @@ export const getAllPurchaseReceipts = async (req, res) => {
         const purchaseReceipts = await PurchaseReceipt.find();
         res.status(200).json(purchaseReceipts);
     }catch(err){
-        res.status(500).json({message: err.message});
+        res.status(500).json({message:"Error obtaining all purchase receipts: " + err.message});
     }
 };
 
@@ -23,7 +23,7 @@ export const createPurchaseReceipt = async (req, res) => {
         await newPurchaseReceipt.save();
         res.status(201).json(newPurchaseReceipt)
     }catch (err){
-        res.status(500).json({message: err.message});
+        res.status(500).json({message:"Error when creating a new purchase receipt: " + err.message});
     }
 };
 
@@ -34,7 +34,7 @@ export const getPurchaseReceiptById = async (req, res) => {
         const purchaseReceipt = await PurchaseReceipt.findById(id);
         res.status(200).json(purchaseReceipt);
     }catch(err){
-        res.status(404).json({message: err.message});
+        res.status(404).json({message:"The purchase receipt was not found with the ID provided: " + err.message});
     }
 };
 
@@ -49,8 +49,9 @@ export const updatePurchaseReceipt = async (req, res) => {
             {new:true}
         );
         res.status(200).json(updatedPurchaseReceipt);
+        
     }catch(err){
-        res.status(400).json({message:err.message});
+        res.status(400).json({message:"Error when updating the purchase receipt: " + err.message});
     }
 };
 
@@ -61,6 +62,6 @@ export const deletePurchaseReceipt = async (req, res) => {
         await PurchaseReceipt.findByIdAndDelete(id);
         res.status(200).json({message: 'Purchase Receipt deleted successfully'});
     }catch(err){
-        res.status(400).json({message: err.message});
+        res.status(400).json({message:"Error by eliminating the purchase receipt:" + err.message});
     }
 };
