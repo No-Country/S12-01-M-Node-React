@@ -7,7 +7,7 @@ export const NavBarRegisterLogin = () => {
   const pathname = usePathname();
 
   const links = [
-    { title: "Eventos", path: "/evento" },
+    { title: "Eventos", path: "/eventos" },
     { title: "Crear Eventos", path: "/crear-eventos" },
     { title: "Ayuda", path: "/ayuda" },
   ];
