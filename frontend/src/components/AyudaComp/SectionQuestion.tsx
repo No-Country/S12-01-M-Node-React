@@ -39,7 +39,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ title, content }) => {
 
 const SectionQuestion: React.FC = () => {
   return (
-    <section className="border-2 border-red-500 w-full pt-10 ">
+    <section className=" w-full pt-10 ">
       <div className="ml-10 my-10">
         <h3 className="text-Principal text-4xl font-bold" id='QaQuestions'>Preguntas frecuentes</h3>
         <div className="mt-10 w-2/3 ">

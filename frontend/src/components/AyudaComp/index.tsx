@@ -19,7 +19,7 @@ const AyudaComp = (props: Props) => {
         </div>
       </div>
       <div className="  h-fit flex justify-evenly w-full ">
-        <section className="border-2 border-black w-2/4 flex flex-col justify-start items-center pt-10">
+        <section className=" w-2/4 flex flex-col justify-start items-center pt-10">
           <div className="bg-gradient-to-r   text-3xl from-rose-600 to-indigo-800  rounded-[10px] p-[1px]  ">
 
             <div className="bg-white rounded-[10px] w-[350px] flex justify-evenly items-center">
