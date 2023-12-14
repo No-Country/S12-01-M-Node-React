@@ -3,6 +3,7 @@ import { BiSearch } from "react-icons/bi";
 import "@/components/AyudaComp/style.css"
 import Link from "next/link";
 import SectionQuestion from "./SectionQuestion";
+import LinkNavProv from "./linkNavProv";
 
 type Props = {};
 
@@ -17,7 +18,7 @@ const AyudaComp = (props: Props) => {
           </h2>
         </div>
       </div>
-      <div className="  h-screen flex justify-evenly ">
+      <div className="  h-fit flex justify-evenly w-full ">
         <section className="border-2 border-black w-2/4 flex flex-col justify-start items-center pt-10">
           <div className="bg-gradient-to-r   text-3xl from-rose-600 to-indigo-800  rounded-[10px] p-[1px]  ">
 
@@ -38,25 +39,7 @@ const AyudaComp = (props: Props) => {
             
           </div>
           <div className="  w-full flex justify-center items-center">
-          <nav className="mt-10  w-full flex  justify-center items-center ">
-                <ul className="h-fit w-1/2  flex flex-col justify-center items-center ">
-                    <li className="border-b-[#B3B3B3] border-b-[1px] w-full p-3">
-                        <Link href={"/"} className=" w-full cursor-pointer text-Principal">Preguntas frecuentes </Link>
-                    </li>
-                    <li className="border-b-[#B3B3B3] border-b-[1px] w-full p-3">
-                        <Link href={"/"} className=" w-full cursor-pointer text-[#4E4E4E] "> Sobre Eventry </Link>
-                    </li>
-                    <li className="border-b-[#B3B3B3] border-b-[1px] w-full p-3">
-                        <Link href={"/"} className=" w-full cursor-pointer text-[#4E4E4E]"> Términos y condiciones </Link>
-                    </li>
-                    <li className="border-b-[#B3B3B3] border-b-[1px] w-full p-3">
-                        <Link href={"/"} className=" w-full cursor-pointer text-[#4E4E4E]"> Políticas de privacidad </Link>
-                    </li>
-                    <li className="border-b-transparent border-b-[1px] w-full p-3">
-                        <Link href={"/"} className=" w-full cursor-pointer text-[#4E4E4E]"> Soporte </Link>
-                    </li>
-                                    </ul>
-            </nav>
+       <LinkNavProv/>
           </div>
      
         </section>

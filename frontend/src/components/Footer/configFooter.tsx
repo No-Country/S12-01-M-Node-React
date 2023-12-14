@@ -11,7 +11,7 @@ const Footer = (props: Props) => {
 
     
     <>
-    {pathname === "/" ?  (<FooterComp/>) : ( "" )}
+  {pathname === "/login" || pathname === "/register"  ?  ("") : ( <FooterComp/> )}
     </>
   )
 }
