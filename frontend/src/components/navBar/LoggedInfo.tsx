@@ -13,7 +13,7 @@ export const LoggedInfo = () => {
       className={`flex justify-center gap-4 bg-Azul h-full rounded-tl-xl rounded-bl-xl items-center ${
         logged.isLogged ? "w-[410px]" : "w-[300px]"
       }`}>
-      {logged.isLogged  ? (
+      {logged.isLogged ? (
         <div className="flex gap-8 items-center justify-around">
           <Image
             src={bellIcon}
@@ -30,7 +30,9 @@ export const LoggedInfo = () => {
               src={avatarHome}
               alt="avatar"
             />
-            <p className="text-lg font-medium text-white capitalize">{logged.usuario.nombre}</p>
+            <p className="text-lg font-medium text-white capitalize">
+              {logged.usuario.nombre}
+            </p>
             <Image
               src={arrowDrop}
               alt="drop down"

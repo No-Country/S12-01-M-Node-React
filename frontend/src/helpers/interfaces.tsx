@@ -26,6 +26,7 @@ export interface Eventos {
   imagen: string;
   popular?: boolean;
   online?: boolean;
+  id: string;
 }
 
 export interface UserLoginState {

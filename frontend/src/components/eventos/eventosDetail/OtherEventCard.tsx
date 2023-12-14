@@ -2,13 +2,12 @@
 import { Eventos } from "@/helpers/interfaces";
 import Image from "next/image";
 import favoriteWhiteIcon from "../../assets/svg/FavoriteWhite.svg";
-import Link from "next/link";
 
 interface EventoCardProps {
   evento: Eventos;
 }
 
-export const EventoCard = ({ evento }: EventoCardProps) => {
+export const OtherEventCard = ({ evento }: EventoCardProps) => {
   return (
     <div className="h-[377px] bg-gradient-to-tr from-pink-600 via-indigo-500 to-indigo-500 rounded-[20px] p-[1px] basis-[331px] grow-0 shrink-0 inline-block relative">
       <span className="w-11 h-11 rounded-full border border-black-300 absolute z-10 flex items-center justify-center top-3 right-3">
@@ -46,11 +45,9 @@ export const EventoCard = ({ evento }: EventoCardProps) => {
             <h3 className="font-bold text-black text-base">
               A partir de ${evento.precio.toFixed(2)}
             </h3>
-            <Link
-              href={"/eventodetail"}
-              className="py-2 w-[110px] h-[40px] bg-Principal text-white text-center text-base font-medium rounded-2xl">
+            <button className="w-[110px] h-[40px] bg-Principal text-white text-center text-base font-medium rounded-2xl">
               Ver Evento
-            </Link>
+            </button>
           </div>
         </div>
       </div>

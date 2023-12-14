@@ -3,11 +3,11 @@ import { create } from "zustand";
 
 interface UserState {
   loginInfo: {
-    usuario: Usuario;                                                                                                                                                                                                                                                                                                                                                                                                    
+    usuario: Usuario;
     isLogged: boolean;
-      };
-  setLogin: (newLogin: UserState['loginInfo']) => void; 
-  setLogOut: () => void; 
+  };
+  setLogin: (newLogin: UserState["loginInfo"]) => void;
+  setLogOut: () => void;
 }
 
 const useUser = create<UserState>()((set) => ({
@@ -23,8 +23,10 @@ const useUser = create<UserState>()((set) => ({
     },
     isLogged: false,
   },
-  setLogin: (newLogin: UserState['loginInfo']) => {
-    set((prevState) => ({ loginInfo: { ...prevState.loginInfo, ...newLogin } }));
+  setLogin: (newLogin: UserState["loginInfo"]) => {
+    set((prevState) => ({
+      loginInfo: { ...prevState.loginInfo, ...newLogin },
+    }));
   },
   setLogOut: () => {
     set({

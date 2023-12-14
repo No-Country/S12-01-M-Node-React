@@ -6,119 +6,7 @@ import searchIcon from "@/assets/svg/SearchIcon.svg";
 import { Eventos } from "@/helpers/interfaces";
 import useSearchBar from "@/hooks/useSearchBar";
 import { LoggedInfo } from "./LoggedInfo";
-
-const eventosArray: Eventos[] = [
-  {
-    nombre: "Concierto 1",
-    categoria: "Música",
-    location: "Ciudad A",
-    fecha: "2023-12-01",
-    stock: 200,
-    precio: 40,
-    comentarios: ["Increíble evento", "Gran experiencia"],
-    imagen: "concierto_a.jpg",
-    dueño: "Dueño A",
-  },
-  {
-    nombre: "Deporte B",
-    categoria: "Deporte",
-    location: "Ciudad B",
-    fecha: "2023-12-05",
-    stock: 150,
-    precio: 25,
-    comentarios: ["Partido emocionante", "Buen ambiente"],
-    imagen: "deporte_b.jpg",
-    dueño: "Dueño B",
-  },
-  {
-    nombre: "Concierto C",
-    categoria: "Música",
-    location: "Ciudad C",
-    fecha: "2023-12-10",
-    stock: 300,
-    precio: 50,
-    comentarios: ["Diversión garantizada", "Artistas increíbles"],
-    imagen: "festival_c.jpg",
-    dueño: "Dueño C",
-  },
-  {
-    nombre: "Conferencia D",
-    categoria: "Conferencia",
-    location: "Ciudad D",
-    fecha: "2023-12-15",
-    stock: 100,
-    precio: 15,
-    comentarios: ["Interesante charla", "Buenos ponentes"],
-    imagen: "conferencia_d.jpg",
-    dueño: "Dueño D",
-  },
-  {
-    nombre: "Teatro E",
-    categoria: "Teatro",
-    location: "Ciudad E",
-    fecha: "2023-12-20",
-    stock: 120,
-    precio: 35,
-    comentarios: ["Excelente actuación", "Historia cautivadora"],
-    imagen: "teatro_e.jpg",
-    dueño: "Dueño E",
-  },
-  {
-    nombre: "Exposición F",
-    categoria: "Arte",
-    location: "Ciudad F",
-    fecha: "2023-12-25",
-    stock: 80,
-    precio: 20,
-    comentarios: ["Obras impresionantes", "Ambiente cultural"],
-    imagen: "exposicion_f.jpg",
-    dueño: "Dueño F",
-  },
-  {
-    nombre: "Cine G",
-    categoria: "Cine",
-    location: "Ciudad G",
-    fecha: "2023-12-30",
-    stock: 180,
-    precio: 10,
-    comentarios: ["Película emocionante", "Buena calidad"],
-    imagen: "cine_g.jpg",
-    dueño: "Dueño G",
-  },
-  {
-    nombre: "Evento H",
-    categoria: "Otro",
-    location: "Ciudad H",
-    fecha: "2024-01-05",
-    stock: 250,
-    precio: 30,
-    comentarios: ["Experiencia única", "Inolvidable"],
-    imagen: "evento_h.jpg",
-    dueño: "Dueño H",
-  },
-  {
-    nombre: "Concierto I",
-    categoria: "Música",
-    location: "Ciudad I",
-    fecha: "2024-01-10",
-    stock: 90,
-    precio: 45,
-    comentarios: ["Concierto espectacular", "Risas garantizadas"],
-    imagen: "show_i.jpg",
-    dueño: "Dueño I",
-  },
-  {
-    nombre: "Fiesta J",
-    categoria: "Fiesta",
-    location: "Ciudad J",
-    fecha: "2024-01-15",
-    stock: 160,
-    precio: 15,
-    comentarios: ["Gran ambiente", "Música genial"],
-    imagen: "fiesta_j.jpg",
-    dueño: "Dueño J",
-  },
-];
+import { eventosArray } from "@/helpers/eventosArray";
 
 export const NavBarHome = () => {
   const links = [
@@ -162,7 +50,9 @@ export const NavBarHome = () => {
         {links.map((link) => (
           <Link
             className={`text-base font-medium text-white ${
-              link.path === pathname ? "underline" : ""
+              link.path === pathname
+                ? "underline underline-offset-[16px] decoration-4"
+                : ""
             }`}
             key={link.title}
             href={link.path}>
