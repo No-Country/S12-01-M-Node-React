@@ -3,7 +3,7 @@ import { BiSearch } from "react-icons/bi";
 import "@/components/AyudaComp/style.css"
 import Link from "next/link";
 import SectionQuestion from "./SectionQuestion";
-import LinkNavProv from "./linkNavProv";
+import LinkNavProv from "./LinkNavProv";
 
 type Props = {};
 
