@@ -1,13 +1,7 @@
+import Register from "@/components/register/Register";
 
-import Register from '@/components/register/Register'
-import React from 'react'
+const RegisterPage = () => {
+  return <Register />;
+};
 
-type Props = {}
-
- const page = (props: Props) => {
-  return (
-   <Register />
-  )
-}
-
-export default page
+export default RegisterPage;
