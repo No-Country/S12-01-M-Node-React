@@ -40,7 +40,7 @@ export const EventoCard = ({ evento }: EventoCardProps) => {
             {evento.nombre} en {evento.location}
           </h2>
           <p className="text-[#666666] text-[15px]">
-            By <span className="uppercase">{evento.dueño}</span>
+            By <Link  href={"/PerfilOrg"} className="uppercase underline cursor-pointer">{evento.dueño}</Link> 
           </p>
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-black text-base">

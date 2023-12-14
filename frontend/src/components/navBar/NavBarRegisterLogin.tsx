@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LinkMenu from "./LinkMenu";
 
 export const NavBarRegisterLogin = () => {
   const pathname = usePathname();
@@ -33,17 +34,7 @@ export const NavBarRegisterLogin = () => {
         ))}
       </nav>
       <aside className="flex items-center gap-2">
-        <Link
-          href={"/login"}
-          className="text-lg font-semibold text-white">
-          Iniciar Sesión
-        </Link>
-        <p className="font-thin text-white">|</p>
-        <Link
-          href={"/register"}
-          className="text-lg font-semibold text-white">
-          Registrase
-        </Link>
+    <LinkMenu/>
       </aside>
     </header>
   );

@@ -43,7 +43,8 @@ const LoginForm: React.FC = () => {
         const responseData = await res.json();
         console.log("Respuesta del servidor:", responseData);
         reset();
-        router.push("/");
+        localStorage.setItem("user", JSON.stringify(responseData.payload));
+        localStorage.setItem("isLogged", "true");
         setLogin({
           usuario: {
             id: responseData.payload._id,
@@ -54,6 +55,8 @@ const LoginForm: React.FC = () => {
           },
           isLogged: true,
         });
+        router.push("/");
+
         return responseData;
       } else {
         return Promise.reject({

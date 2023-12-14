@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import searchIcon from "@/assets/svg/SearchIcon.svg";
 import { Eventos } from "@/helpers/interfaces";
 import useSearchBar from "@/hooks/useSearchBar";
-import { LoggedInfo } from "./LoggedInfo";
 import { eventosArray } from "@/helpers/eventosArray";
+import LoggedInfo from "./Logedinfo/LoggedInfo";
 
 export const NavBarHome = () => {
   const links = [
