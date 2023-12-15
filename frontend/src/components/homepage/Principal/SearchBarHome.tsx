@@ -4,8 +4,14 @@ import searchButton from "@/assets/svg/SearchLocationIcon.svg";
 import useSearchBar from "@/hooks/useSearchBar";
 
 export const SearchBarHome = () => {
-  const { onSubmit, register, handleSubmit, setValue } = useSearchBar();
-
+  const {
+    onSubmit,
+    register,
+    handleSubmit,
+    setValue,
+    searchTerm,
+    setSearchTerm,
+  } = useSearchBar();
   return (
     <form className="relative w-[458px] h-[60px]">
       <input
@@ -15,6 +21,7 @@ export const SearchBarHome = () => {
         {...register("search")}
         onChange={(e) => {
           setValue("search", e.target.value.toLowerCase());
+          setSearchTerm(e.target.value);
         }}
       />
       <Image
@@ -23,7 +30,11 @@ export const SearchBarHome = () => {
         height={58}
         alt="Search Button"
         className="absolute top-[21px] left-[87%] cursor-pointer"
-        onClick={() => handleSubmit(onSubmit)()}
+        onClick={() => {
+          if (searchTerm !== "") {
+            handleSubmit(onSubmit)();
+          }
+        }}
       />
     </form>
   );
