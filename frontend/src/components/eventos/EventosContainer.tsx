@@ -4,46 +4,48 @@ import { EventoCard } from "./EventoCard";
 import { FilterBarEventos } from "./filterBarEventos";
 import { useState } from "react";
 import { SearchFormEventos } from "./SearchFormEventos";
-import { eventosArray } from "@/helpers/eventosArray";
 
 interface EventosContainerProps {
   categoria: string;
+  events: Eventos[];
 }
 
-export const EventosContainer = ({ categoria }: EventosContainerProps) => {
+export const EventosContainer = ({
+  categoria,
+  events,
+}: EventosContainerProps) => {
   const [value, setValue] = useState<string>("todos");
 
-  const filteredEventsByCategory = eventosArray.filter((evento) => {
+  const filteredEventsByCategory = events.filter((evento) => {
     if (categoria === "negocios") {
-      return evento.categoria === "Negocios";
+      return evento.categories === "Negocios";
     }
     if (categoria === "musica") {
-      return evento.categoria === "Musica";
+      return evento.categories === "Musica";
     }
     if (categoria === "vidanocturna") {
-      return evento.categoria === "Vida Nocturna";
+      return evento.categories === "Vida Nocturna";
     }
     if (categoria === "gastronomia") {
-      return evento.categoria === "Gastronomia";
+      return evento.categories === "Gastronomia";
     }
     if (categoria === "comunidad") {
-      return evento.categoria === "Comunidad";
+      return evento.categories === "Comunidad";
     }
     if (categoria === "artesescenicas") {
-      return evento.categoria === "Artes Escenicas";
+      return evento.categories === "Artes Escenicas";
     }
   });
-  console.log(filteredEventsByCategory);
 
   const applyAdditionalFilters = (events: Eventos[], value: string) => {
     if (value === "online") {
-      return events.filter((event) => event.online === true);
+      return events.filter((event) => event.location === "online");
     }
     if (value === "populares") {
-      return events.filter((event) => event.popular === true);
+      return events.filter((event) => event.stock_tickets < 20);
     }
     if (value === "gratis") {
-      return events.filter((event) => event.precio === 0);
+      return events.filter((event) => event.price === 0);
     }
     if (value === "hoy") {
       const day = new Date().getDate();
@@ -67,7 +69,9 @@ export const EventosContainer = ({ categoria }: EventosContainerProps) => {
 
       const nombreMes = nombresMeses[month];
       const hoy = `${day} de ${nombreMes} ${year}`;
-      return events.filter((event) => event.fecha.toLocaleLowerCase() === hoy);
+      return events.filter(
+        (event) => event.date_of_event.toLocaleLowerCase() === hoy
+      );
     }
     return events;
   };

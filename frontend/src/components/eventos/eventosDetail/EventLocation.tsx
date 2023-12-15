@@ -1,8 +1,13 @@
 import locationIcon from "@/assets/svg/locationIcon.svg";
 import location from "@/assets/img/location.png";
 import Image from "next/image";
+import { Eventos } from "@/helpers/interfaces";
 
-export const EventLocation = () => {
+interface EventLocationProps {
+  singleEvent: Eventos;
+}
+
+export const EventLocation = ({ singleEvent }: EventLocationProps) => {
   return (
     <div>
       <h4 className="font-bold text-2xl">Ubicación</h4>
@@ -13,9 +18,7 @@ export const EventLocation = () => {
           height={24}
           alt="ubicación"
         />
-        <p>
-          Casa Frawen's. Diag. 74 y 59 La Plata, Provincia de Buenos Aires B1904
-        </p>
+        <p>{singleEvent.location}</p>
       </div>
       <Image
         src={location}

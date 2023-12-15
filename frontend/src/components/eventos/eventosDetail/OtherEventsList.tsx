@@ -2,9 +2,14 @@
 import { useEffect, useState } from "react";
 import { CardEventoContainer } from "@/components/homepage/EventosDestacados/CardEventoContainer";
 import { FilterBarButtons } from "@/components/homepage/EventosDestacados/FilterBarButtons";
-import { eventosArray } from "@/helpers/eventosArray";
+/* import { eventosArray } from "@/helpers/eventosArray"; */
+import { Eventos } from "@/helpers/interfaces";
 
-export const OtherEventsList = () => {
+interface OtherEventsListProps {
+  events: Eventos[];
+}
+
+export const OtherEventsList = ({ events }: OtherEventsListProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [value, setValue] = useState<string>("todos");
 
@@ -19,11 +24,11 @@ export const OtherEventsList = () => {
         <FilterBarButtons
           setCurrentIndex={setCurrentIndex}
           currentIndex={currentIndex}
-          eventos={eventosArray}
+          eventos={events}
         />
       </div>
       <CardEventoContainer
-        eventos={eventosArray}
+        eventos={events}
         currentIndex={currentIndex}
       />
     </section>

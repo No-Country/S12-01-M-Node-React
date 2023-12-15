@@ -10,8 +10,7 @@ interface SearchFormEventosProps {
 export const SearchFormEventos = ({
   filteredEvents,
 }: SearchFormEventosProps) => {
-  const { onSubmit, register, handleSubmit, setValue } =
-    useSearchBar(filteredEvents);
+  const { onSubmit, register, handleSubmit, setValue } = useSearchBar();
 
   return (
     <form className="relative">

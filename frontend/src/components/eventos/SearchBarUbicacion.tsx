@@ -2,11 +2,9 @@
 import Image from "next/image";
 import searchButton from "@/assets/svg/SearchIcon.svg";
 import useSearchBar from "@/hooks/useSearchBar";
-import { eventosArray } from "@/helpers/eventosArray";
 
 export const SearchBarUbicacion = () => {
-  const { onSubmit, register, handleSubmit, setValue } =
-    useSearchBar(eventosArray);
+  const { onSubmit, register, handleSubmit, setValue } = useSearchBar();
 
   return (
     <form className="relative">
