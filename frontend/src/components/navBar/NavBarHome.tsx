@@ -3,10 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import searchIcon from "@/assets/svg/SearchIcon.svg";
-import { Eventos } from "@/helpers/interfaces";
 import useSearchBar from "@/hooks/useSearchBar";
 import { LoggedInfo } from "./LoggedInfo";
-import { eventosArray } from "@/helpers/eventosArray";
 
 export const NavBarHome = () => {
   const links = [
@@ -15,8 +13,7 @@ export const NavBarHome = () => {
   ];
   const pathname = usePathname();
 
-  const { onSubmit, register, handleSubmit, setValue } =
-    useSearchBar(eventosArray);
+  const { onSubmit, register, handleSubmit, setValue } = useSearchBar();
 
   return (
     <header className="h-20 w-full flex items-center pl-10 justify-between border-b[1px] border-b-Principal bg-Principal">

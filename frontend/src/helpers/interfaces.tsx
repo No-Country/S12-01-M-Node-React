@@ -15,18 +15,16 @@ export enum Role {
 }
 
 export interface Eventos {
-  nombre: string;
-  dueño: string;
-  categoria: string;
+  _id: string;
+  name: string;
+  users: string;
+  categories: string;
   location: string;
-  fecha: string;
-  stock: number;
-  precio: number;
-  comentarios: string[];
-  imagen: string;
-  popular?: boolean;
-  online?: boolean;
-  id: string;
+  date_of_event: string;
+  stock_tickets: number;
+  price: number;
+  comments: string[];
+  image: string;
 }
 
 export interface UserLoginState {

@@ -1,12 +1,14 @@
-"use client";
-import { useState } from "react";
 import plus from "@/assets/svg/plusIcon.svg";
 import minus from "@/assets/svg/minusIcon.svg";
 import Image from "next/image";
+import { SetStateAction } from "react";
 
-const Counter = () => {
-  const [count, setCount] = useState(1);
+interface CounterProps {
+  count: number;
+  setCount: React.Dispatch<SetStateAction<number>>;
+}
 
+const Counter = ({ count, setCount }: CounterProps) => {
   const handleIncrement = () => {
     setCount(count + 1);
   };

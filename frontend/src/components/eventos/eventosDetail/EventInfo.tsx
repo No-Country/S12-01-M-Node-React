@@ -3,11 +3,16 @@ import drawIcon from "@/assets/img/organizadores/Draw.png";
 import favoriteWhite from "@/assets/svg/FavoriteWhite.svg";
 import { EventDetail } from "./EventDetail";
 import { EventLocation } from "./EventLocation";
+import { Eventos } from "@/helpers/interfaces";
 
-export const EventInfo = () => {
+interface EventInfoProps {
+  singleEvent: Eventos;
+}
+
+export const EventInfo = ({ singleEvent }: EventInfoProps) => {
   return (
     <article className="w-3/4 pr-8">
-      <h1 className="font-bold text-4xl">Winona Riders + Fonso en Club TRI</h1>
+      <h1 className="font-bold text-4xl">{singleEvent.name}</h1>
       <div className="flex items-center gap-16 mt-4">
         <Image
           src={drawIcon}
@@ -57,8 +62,8 @@ export const EventInfo = () => {
           consequat tellus nunc massa quis.
         </p>
       </article>
-      <EventDetail />
-      <EventLocation />
+      <EventDetail singleEvent={singleEvent} />
+      <EventLocation singleEvent={singleEvent} />
     </article>
   );
 };
