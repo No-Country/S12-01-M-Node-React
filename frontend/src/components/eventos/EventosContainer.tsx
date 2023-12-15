@@ -88,7 +88,7 @@ export const EventosContainer = ({
           value={value}
           setValue={setValue}
         />
-        <SearchFormEventos filteredEvents={filteredEvents} />
+        <SearchFormEventos />
       </div>
       <div className="flex gap-x-28 gap-y-8 flex-wrap align-top items-center justify-start p-10">
         {filteredEvents.map((evento, index) => (

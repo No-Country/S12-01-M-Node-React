@@ -13,7 +13,14 @@ export const NavBarHome = () => {
   ];
   const pathname = usePathname();
 
-  const { onSubmit, register, handleSubmit, setValue } = useSearchBar();
+  const {
+    onSubmit,
+    register,
+    handleSubmit,
+    setValue,
+    searchTerm,
+    setSearchTerm,
+  } = useSearchBar();
 
   return (
     <header className="h-20 w-full flex items-center pl-10 justify-between border-b[1px] border-b-Principal bg-Principal">
@@ -31,6 +38,7 @@ export const NavBarHome = () => {
             {...register("search")}
             onChange={(e) => {
               setValue("search", e.target.value.toLowerCase());
+              setSearchTerm(e.target.value);
             }}
           />
           <Image
@@ -38,8 +46,12 @@ export const NavBarHome = () => {
             width={23}
             height={23}
             alt="search icon"
-            className="absolute top-[14px] left-[310px]"
-            onClick={() => handleSubmit(onSubmit)()}
+            className="absolute top-[14px] left-[310px] cursor-pointer"
+            onClick={() => {
+              if (searchTerm !== "") {
+                handleSubmit(onSubmit)();
+              }
+            }}
           />
         </form>
       </nav>
