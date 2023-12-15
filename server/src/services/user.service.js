@@ -57,6 +57,20 @@ export const getAllUsers = async () => {
     }
 };
 
+export const getUserById = async (userId) => {
+    try {
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            throw new AppError('User not found', 404);
+        }
+
+        return user;
+    } catch (error) {
+        throw new AppError(`Error getting user: ${error.message}`, 500);
+    }
+};
+
 export const updateUser = async (userId, updatedUserData) => {
     try {
         const updatedUser = await userModel.findByIdAndUpdate(

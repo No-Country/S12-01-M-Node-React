@@ -2,6 +2,7 @@ import catchAsync from '../helpers/catchAsycn.js';
 import { success } from '../helpers/serverResponses.js';
 import {
     getAllUsers,
+    getUserById,
     updateUser,
     deleteUser,
 } from '../services/user.service.js';
@@ -13,6 +14,17 @@ export const getUsers = catchAsync(async (req, res) => {
         res,
         message: 'Users retrieved successfully',
         data: users,
+    });
+});
+
+export const getUserByIdController = catchAsync(async (req, res) => {
+    const userId = req.params._id;
+    const user = await getUserById(userId);
+
+    success({
+        res,
+        message: 'User retrieved successfully',
+        data: user,
     });
 });
 
