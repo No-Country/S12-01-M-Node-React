@@ -2,6 +2,7 @@ import express from 'express';
 import passport from 'passport';
 import {
     getUsers,
+    getUserByIdController,
     updatedUser,
     deletedUser,
 } from '../controllers/user.controllers.js';
@@ -13,6 +14,13 @@ router.get(
     '/all-users',
     passport.authenticate('jwt', { session: false }),
     getUsers,
+);
+
+router.get(
+    '/:_id',
+    validateParams,
+    passport.authenticate('jwt', { session: false }),
+    getUserByIdController,
 );
 
 router.put(
