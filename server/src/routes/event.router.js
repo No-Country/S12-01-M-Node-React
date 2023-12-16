@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import passport from 'passport';
 import {
     allEvents,
     eventsById,
@@ -16,11 +17,11 @@ eventRouter.get('/', allEvents);
 
 eventRouter.get('/:_id', eventsById);
 
-eventRouter.post('/createEvents', createEvents);
+eventRouter.post('/createEvents',passport.authenticate('createEvents', { session: false }), createEvents);
 
-eventRouter.put('/updateEvents/:_id',updateEvents);
+eventRouter.put('/updateEvents/:_id',passport.authenticate('updateEvents', { session: false }),updateEvents);
 
-eventRouter.delete('/deleteEvents/:_id',deleteEvents);
+eventRouter.delete('/deleteEvents/:_id',passport.authenticate('deleteEvents', { session: false }),deleteEvents);
 
 eventRouter.get('/eventsByCategories/:categories',eventsByCategories);
 
