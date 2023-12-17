@@ -19,7 +19,12 @@ export const createTicketService = async (userid, event) => {
 
         if (!userUpdated) throw new Error(`Couldn't update user ticket, please try again.`);
 
-        return ticket;
+        return {
+            reference_number: ticket.reference_number,
+            event_name: ticket.event_name,
+            event_date: ticket.event_date,
+            _id: ticket._id
+        };
     } catch (error) {
         throw new Error(error.message);
     }
@@ -46,6 +51,20 @@ export const ticketAlreadyExists = async (userid, eventName) => {
         if (!user?.tickets) return false;
 
         return user?.tickets?.some(ticket => ticket.event_name === event?.name);
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+export const ticketEmailService = async (user, reference) => {
+    try {
+        const ticket = user.tickets.find(ticket => ticket.reference_number === reference);
+        if (!ticket) throw new Error(`Couldn't find ticket with reference number "${reference}"`);
+        return {
+            reference_number: ticket.reference_number,
+            event_name: ticket.event_name,
+            event_date: ticket.event_date
+        };
     } catch (error) {
         throw new Error(error.message);
     }

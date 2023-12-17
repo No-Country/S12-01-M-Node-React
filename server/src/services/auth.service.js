@@ -5,6 +5,7 @@ import local from "passport-local"
 import AppError from "../helpers/appError.js";
 import {encryptPassword} from "../helpers/encrypt.js";
 import config from "../config.js";
+import { registerMail, transporter } from "../utils/nodemailer.js";
 
 const { JWT_SECRET, COOKIE_NAME} = config;
 
@@ -54,7 +55,7 @@ const initializePassport = ( ) =>{
                 if (!result) {
                     throw new AppError('Failed to create user', 500);
                 } 
-
+                await transporter.sendMail(registerMail(result.email, result.first_name));
                 return done(null, result);
                 
             } catch (error) {
