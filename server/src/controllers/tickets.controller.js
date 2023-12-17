@@ -1,4 +1,4 @@
-import { createTicketService, getUser, ticketAlreadyExists, ticketEmailService, purchaseTicketService } from "../services/tickets.service.js";
+import { createTicketService, getUser, ticketAlreadyExists, ticketEmailService, getEvent } from "../services/tickets.service.js";
 import { transporter, ticketMail } from "../utils/nodemailer.js";
 
 export const getSingleTicketController = async (req, res) => {
@@ -26,7 +26,7 @@ export const createTicketController = async (req, res) => {
         const ticket = await createTicketService(userid, event);
 
         if (purchase) {
-            const transaction = await purchaseTicketService(event);
+            const transaction = await getEvent(event);
             if (!transaction) throw new Error(`Event ${event} not found`);
             if (transaction.stock_tickets > 0) {
                 transaction.stock_tickets = transaction.stock_tickets - 1;
