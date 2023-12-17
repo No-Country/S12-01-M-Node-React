@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import passport from 'passport';
 import {
     allEvents,
     eventsById,
@@ -10,17 +11,22 @@ import {
     eventsByPrices
 } from '../controllers/event.controllers.js';
 
+import {
+    validateCreateEvents,
+    validateDeleteEvents
+} from '../helpers/validators/events/eventsValidator.js'
+
 const eventRouter = Router();
 
 eventRouter.get('/', allEvents);
 
 eventRouter.get('/:_id', eventsById);
 
-eventRouter.post('/createEvents', createEvents);
+eventRouter.post('/createEvents',validateCreateEvents,passport.authenticate('jwt', { session: false }), createEvents);
 
-eventRouter.put('/updateEvents/:_id',updateEvents);
+eventRouter.put('/updateEvents/:_id',passport.authenticate('jwt', { session: false }),updateEvents);
 
-eventRouter.delete('/deleteEvents/:_id',deleteEvents);
+eventRouter.delete('/deleteEvents/:_id',validateDeleteEvents,passport.authenticate('jwt', { session: false }),deleteEvents);
 
 eventRouter.get('/eventsByCategories/:categories',eventsByCategories);
 
