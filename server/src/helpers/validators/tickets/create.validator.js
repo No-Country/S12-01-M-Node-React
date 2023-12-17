@@ -11,6 +11,10 @@ export const createTicketValidate = [
     query('event')
         .notEmpty()
         .withMessage('Event name is required'),
+    query('purchase')
+        .optional()
+        .isBoolean()
+        .withMessage('Purchase query must be a boolean'),
 
     (req, res, next) => {
         const errors = validationResult(req)
