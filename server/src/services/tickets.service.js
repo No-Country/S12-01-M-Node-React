@@ -69,3 +69,12 @@ export const ticketEmailService = async (user, reference) => {
         throw new Error(error.message);
     }
 }
+
+export const getEvent = async (eventName) => {
+    try {
+        const event = await Event.findOne({ name: eventName });
+        return event;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
