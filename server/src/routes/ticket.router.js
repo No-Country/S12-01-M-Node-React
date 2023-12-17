@@ -25,6 +25,7 @@ router.get('/email/:userid/:reference', passport.authenticate('jwt', { session: 
 // Create new ticket by user id
 // params: userid  (ObjectId string)
 // query: ?event=   (String)
+// query: &purchase=true (boolean)
 router.post('/:userid', passport.authenticate('jwt', { session: false }), createTicketValidate, createTicketController);
 
 export default router;
