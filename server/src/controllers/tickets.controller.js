@@ -1,4 +1,5 @@
-import { createTicketService, getUser, ticketAlreadyExists } from "../services/tickets.service.js";
+import { createTicketService, getUser, ticketAlreadyExists, ticketEmailService } from "../services/tickets.service.js";
+import { transporter, ticketMail } from "../utils/nodemailer.js";
 
 export const getSingleTicketController = async (req, res) => {
     try {
@@ -38,6 +39,21 @@ export const getController = async (req, res) => {
         if (!tickets) throw new Error(`Couldn't find user`);
         if (!tickets?.tickets) throw new Error(`No ticket found`);
         return res.status(200).json({ tickets: tickets?.tickets });
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
+export const sendTicketEmailController = async (req, res) => {
+    try {
+        const { userid, reference } = req.params;
+        const user = await getUser(userid);
+        if (!user) throw new Error(`Couldn't find user`);
+
+        const ticket = await ticketEmailService(user, reference);
+        await transporter.sendMail(ticketMail(user, ticket));
+        
+        res.status(200).json({ data: 'Ticked sended via email.' });
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
