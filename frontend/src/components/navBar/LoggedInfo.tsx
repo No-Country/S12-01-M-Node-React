@@ -5,6 +5,7 @@ import bellIcon from "@/assets/svg/bellIcon.svg";
 import avatarHome from "@/assets/img/avatarHome.png";
 import arrowDrop from "@/assets/svg/arrowDropDown.svg";
 import useUser from "@/store/loginStore";
+import { Role } from "@/helpers/interfaces";
 
 export const LoggedInfo = () => {
   const logged = useUser((state) => state.loginInfo);
@@ -19,7 +20,7 @@ export const LoggedInfo = () => {
             src={bellIcon}
             alt="Notificaciones"
           />
-          {logged.usuario.role === 1 && (
+          {logged.usuario.role === Role.user && (
             <Image
               src={heartIcon}
               alt="Favoritos"
@@ -37,6 +38,7 @@ export const LoggedInfo = () => {
               src={arrowDrop}
               alt="drop down"
             />
+            <Link href={`/perfil/${logged.usuario.id}`}>P</Link>
           </div>
         </div>
       ) : (

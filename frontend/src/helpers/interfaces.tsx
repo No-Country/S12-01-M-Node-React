@@ -1,3 +1,15 @@
+export interface UsuarioLogged {
+  _id?: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  telephone: string;
+  favorites?: string[];
+  tickets?: string[];
+  role: Role;
+  isActive?: boolean;
+}
+
 export interface Usuario {
   id?: string;
   nombre: string;
