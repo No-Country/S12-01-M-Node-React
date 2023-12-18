@@ -8,13 +8,15 @@ import {
     deleteEvents,
     eventsByCategories,
     eventsByLocation,
-    eventsByPrices
+    eventsByPrices,
+    saveFavoriteEventController
 } from '../controllers/event.controllers.js';
 
 import {
     validateCreateEvents,
     validateDeleteEvents
 } from '../helpers/validators/events/eventsValidator.js'
+import { saveFavoriteEventValidate } from '../helpers/validators/events/favorite.validator.js';
 
 const eventRouter = Router();
 
@@ -33,5 +35,7 @@ eventRouter.get('/eventsByCategories/:categories',eventsByCategories);
 eventRouter.get('/eventsByLocation/:location' , eventsByLocation);
 
 eventRouter.get('/eventsByPrices/:price' , eventsByPrices);
+
+eventRouter.post('/:userid/save/:eventid', saveFavoriteEventValidate, passport.authenticate('jwt', { session: false }), saveFavoriteEventController);
 
 export default eventRouter;
