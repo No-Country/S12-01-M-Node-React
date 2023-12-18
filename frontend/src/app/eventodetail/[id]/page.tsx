@@ -2,7 +2,6 @@ import Image from "next/image";
 import { TicketInfo } from "@/components/eventos/eventosDetail/ticketInfo";
 import { EventInfo } from "@/components/eventos/eventosDetail/EventInfo";
 import { OtherEventsList } from "@/components/eventos/eventosDetail/OtherEventsList";
-import { useParams } from "next/navigation";
 
 async function getData() {
   const res = await fetch(
@@ -26,7 +25,7 @@ async function getSingleEvent(id: string) {
   return res.json();
 }
 
-const EventDetail = async ({ params }: any) => {
+const EventDetail = async ({ params }: { params: { id: string } }) => {
   const events = await getData();
   const { id } = params;
   const singleEvent = await getSingleEvent(id);
