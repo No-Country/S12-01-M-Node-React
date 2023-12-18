@@ -1,5 +1,5 @@
 import express from 'express';
-import passport from 'passport';
+// import passport from 'passport';
 import {
     getUsers,
     getUserByIdController,
@@ -12,28 +12,28 @@ const router = express.Router();
 
 router.get(
     '/all-users',
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     getUsers,
 );
 
 router.get(
     '/:_id',
     validateParams,
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     getUserByIdController,
 );
 
 router.put(
     '/:_id',
     validateParams,
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     updatedUser,
 );
 
 router.put(
     '/delete/:_id',
     validateParams,
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     deletedUser,
 );
 
