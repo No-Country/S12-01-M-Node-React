@@ -5,6 +5,7 @@ import {
     getUserById,
     updateUser,
     deleteUser,
+    getFavoritesService,
 } from '../services/user.service.js';
 
 export const getUsers = catchAsync(async (req, res) => {
@@ -18,7 +19,14 @@ export const getUsers = catchAsync(async (req, res) => {
 });
 
 export const getUserByIdController = catchAsync(async (req, res) => {
-    const userId = req.params._id;
+    const {_id: userId} = req.params;
+    const { favorites } = req.query;
+    
+    if (favorites) {
+        const populatedFavorites = await getFavoritesService(userId);
+        return res.status(200).json({ favorites: populatedFavorites.favorites });
+    }
+
     const user = await getUserById(userId);
 
     success({
