@@ -1,4 +1,5 @@
 import Event from '../models/event.model.js';
+import { saveFavoriteEventService } from '../services/event.service.js';
 
 export const allEvents = async (req, res) => {
     try {
@@ -123,3 +124,15 @@ export const eventsByPrices = async (req,res) =>{
     }
 }
 
+export const saveFavoriteEventController = async (req, res) => {
+    try {
+        const { userid, eventid } = req.params;
+        const savedFavorite = await saveFavoriteEventService(userid, eventid);
+
+        if (!savedFavorite) throw new Error(`Couldn't save event to favorites, please try again`);
+
+        return res.status(200).json({ message: `Favorite saved` })
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}

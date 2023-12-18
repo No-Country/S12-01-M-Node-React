@@ -1,4 +1,4 @@
-import { body, param, validationResult } from 'express-validator';
+import { body, param, query, validationResult } from 'express-validator';
 
 export const validateFields = (req, res, next) => {
     const errors = validationResult(req);
@@ -45,6 +45,10 @@ export const loginValidation = [
 
 export const validateParams = [
     param('_id', 'ID is not valid').isMongoId(),
+    query('favorites')
+        .optional()
+        .isBoolean()
+        .withMessage('favorites query must be a boolean'),
 
     (req, res, next) => {
         validateFields(req, res, next);
