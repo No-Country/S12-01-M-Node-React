@@ -6,9 +6,17 @@ import avatarHome from "@/assets/img/avatarHome.png";
 import arrowDrop from "@/assets/svg/arrowDropDown.svg";
 import useUser from "@/store/loginStore";
 import { Role } from "@/helpers/interfaces";
+import { useState } from "react";
+import { NavBarView } from "./NavBarView";
 
 export const LoggedInfo = () => {
   const logged = useUser((state) => state.loginInfo);
+  const [isOpen, setIsOpen] = useState<Boolean>(false);
+
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div
       className={`flex justify-center gap-4 bg-Azul h-full rounded-tl-xl rounded-bl-xl items-center ${
@@ -37,8 +45,17 @@ export const LoggedInfo = () => {
             <Image
               src={arrowDrop}
               alt="drop down"
+              className="cursor-pointer"
+              onClick={handleOpen}
             />
-            <Link href={`/perfil/${logged.usuario.id}`}>P</Link>
+            {isOpen && (
+              <div className="relative">
+                <NavBarView
+                  id={logged.usuario.id}
+                  setIsOpen={setIsOpen}
+                />
+              </div>
+            )}
           </div>
         </div>
       ) : (
