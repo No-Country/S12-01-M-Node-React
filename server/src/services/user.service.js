@@ -71,6 +71,15 @@ export const getUserById = async (userId) => {
     }
 };
 
+export const getFavoritesService = async (userId) => {
+    try {
+        const favorites = await userModel.findById(userId).populate('favorites', '_id name categories location date_of_event price comments image');
+        return favorites;
+    } catch (error) {
+        throw new Error(`Error getting favorites: ${error.message}`);
+    }
+};
+
 export const updateUser = async (userId, updatedUserData) => {
     try {
         const updatedUser = await userModel.findByIdAndUpdate(
