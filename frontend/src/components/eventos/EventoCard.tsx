@@ -10,7 +10,7 @@ interface EventoCardProps {
 
 export const EventoCard = ({ evento }: EventoCardProps) => {
   return (
-    <div className="h-[377px] bg-gradient-to-tr from-pink-600 via-indigo-500 to-indigo-500 rounded-[20px] p-[1px] basis-[331px] grow-0 shrink-0 inline-block relative">
+    <div className="h-[377px] bg-gradient-to-tr from-pink-600 via-indigo-500 to-indigo-500 rounded-[20px] p-[1px] basis-[331px] grow-0 shrink-0 inline-block relative ">
       <span className="w-11 h-11 rounded-full border border-black-300 absolute z-10 flex items-center justify-center top-3 right-3">
         <Image
           src={favoriteWhiteIcon}

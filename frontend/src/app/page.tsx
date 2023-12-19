@@ -23,7 +23,7 @@ export default function Home() {
       <EventosDestacados />
       <HomeBanner />
       <Sponosrs />
-      <Testimonios />
+      <Testimonios title="testimonios" subtitle=" El mejor publico lo tenemos nosotros" />
     </main>
   );
 }

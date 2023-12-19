@@ -1,10 +1,11 @@
+import OrgPerfil from '@/components/eventos/OrgPerfil/OrgPerfil'
 import React from 'react'
 
 type Props = {}
 
 const PerfilOrg = (props: Props) => {
   return (
-    <div>PerfilOrg</div>
+    <OrgPerfil/>
   )
 }
 
