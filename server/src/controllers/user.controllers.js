@@ -37,7 +37,7 @@ export const getUserByIdController = catchAsync(async (req, res) => {
 });
 
 export const updatedUser = catchAsync(async (req, res, next) => {
-    const userId = req.params.id;
+    const userId = req.params._id;
     const updatedUserData = req.body;
 
     const updatedUser = await updateUser(userId, updatedUserData);
