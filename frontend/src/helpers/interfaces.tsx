@@ -27,7 +27,7 @@ export enum Role {
 }
 
 export interface Eventos {
-  _id: string;
+  _id?: string;
   name: string;
   users: string;
   categories: string;

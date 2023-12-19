@@ -1,6 +1,7 @@
 import breadcumbIcon from "@/assets/svg/breadcumbIcon.svg";
 import Image from "next/image";
 import { EventosContainer } from "@/components/eventos/EventosContainer";
+import { revalidatePath } from "next/cache";
 
 export async function generateStaticParams() {
   const categorias = [
@@ -24,6 +25,7 @@ async function getData() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
+  revalidatePath("/", "layout");
 
   return res.json();
 }

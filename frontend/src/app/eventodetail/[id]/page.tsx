@@ -2,6 +2,7 @@ import Image from "next/image";
 import { TicketInfo } from "@/components/eventos/eventosDetail/ticketInfo";
 import { EventInfo } from "@/components/eventos/eventosDetail/EventInfo";
 import { OtherEventsList } from "@/components/eventos/eventosDetail/OtherEventsList";
+import { revalidatePath } from "next/cache";
 
 async function getData() {
   const res = await fetch(
@@ -10,6 +11,7 @@ async function getData() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
+  revalidatePath("/", "layout");
 
   return res.json();
 }
@@ -21,6 +23,7 @@ async function getSingleEvent(id: string) {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
+  revalidatePath("/", "layout");
 
   return res.json();
 }
