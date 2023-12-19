@@ -28,20 +28,20 @@ eventRouter.get('/:_id', eventsById);
 eventRouter.post(
     '/createEvents',
     validateCreateEvents,
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     createEvents,
 );
 
 eventRouter.put(
     '/updateEvents/:_id',
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     updateEvents,
 );
 
 eventRouter.delete(
     '/deleteEvents/:_id',
     validateDeleteEvents,
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     deleteEvents,
 );
 
