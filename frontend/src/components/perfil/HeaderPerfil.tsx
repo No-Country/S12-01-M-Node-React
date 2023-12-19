@@ -3,8 +3,14 @@ import Link from "next/link";
 import avatarPerfil from "@/assets/img/avatarPerfil.png";
 import metodoPago from "@/assets/svg/metodoPagoPerfil.svg";
 import editarPerfil from "@/assets/svg/editarPerfil.svg";
+import { UsuarioLogged } from "@/helpers/interfaces";
 
-export const HeaderPerfil = () => {
+interface HeaderPerfilProps {
+  user: UsuarioLogged;
+}
+
+export const HeaderPerfil = ({ user }: HeaderPerfilProps) => {
+  console.log(user);
   return (
     <section className="w-full p-10 flex justify-between rounded-[10px] bg-blue-100">
       <div className="w-3/4 flex items-center gap-8 ">
@@ -15,9 +21,11 @@ export const HeaderPerfil = () => {
           height={120}
         />
         <div className="flex flex-col">
-          <h2 className="font-bold text-2xl">Sara Gradial</h2>
+          <h2 className="font-bold text-2xl capitalize">
+            {user.first_name} {user.last_name}
+          </h2>
           <p className="text-base font-bold">
-            2 próximos eventos |{" "}
+            2 próximos eventos |
             <span className="font-normal">10 eventos asistidos</span>
           </p>
           <p className="text-base text-Principal">5 eventos favoritos</p>
@@ -32,7 +40,7 @@ export const HeaderPerfil = () => {
             height={24}
           />
           <Link
-            href={`/editar-perfil/6579b47c5d114f5fdf61f111`}
+            href={`/editar-perfil/${user._id}`}
             className="text-Azul">
             Editar datos de cuenta
           </Link>

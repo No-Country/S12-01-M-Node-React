@@ -45,10 +45,7 @@ export const TicketInfo = ({ singleEvent }: TicketInfoProps) => {
           height={24}
           alt="time"
         />
-        <p className="text-xl">
-          A partir de{" "}
-          <span className="font-bold">${singleEvent.price.toFixed(2)}</span>
-        </p>
+        <p className="text-xl font-bold">${singleEvent.price.toFixed(2)}</p>
       </div>
       <Counter
         count={count}

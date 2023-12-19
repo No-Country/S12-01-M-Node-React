@@ -1,13 +1,44 @@
+import { UsuarioLogged } from "@/helpers/interfaces";
 import { useForm } from "react-hook-form";
 
-export const CambiarContraseña = () => {
+interface HeaderEditarPerfilProps {
+  user: UsuarioLogged;
+}
+
+export const CambiarContraseña = ({ user }: HeaderEditarPerfilProps) => {
   const { register, handleSubmit, reset } = useForm();
 
-  const onHandleSubmit = (data: any) => {
+  const onHandleSubmit = async (data: any) => {
     if (data.password !== "") {
-      console.log(data);
-      reset();
+      try {
+        const res = await fetch(
+          `https://s12-01-m-node-react.onrender.com/api/v1/user/${user._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              password: data.password,
+            }),
+          }
+        );
+        if (res.ok) {
+          const responseData = await res.json();
+          console.log("Respuesta del servidor:", responseData);
+          return responseData;
+        } else {
+          return Promise.reject({
+            err: true,
+            status: res.status,
+            statusText: res.statusText,
+          });
+        }
+      } catch (err) {
+        return err;
+      }
     }
+    reset();
   };
   return (
     <form

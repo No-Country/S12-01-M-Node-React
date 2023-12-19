@@ -2,20 +2,48 @@
 import Image from "next/image";
 import avatarPerfil from "@/assets/img/avatarPerfil.png";
 import { useForm } from "react-hook-form";
+import { UsuarioLogged } from "@/helpers/interfaces";
 
-interface editProfileFormProps {
-  first_name: string;
-  last_name: string;
+interface HeaderEditarPerfilProps {
+  user: UsuarioLogged;
 }
 
-export const HeaderEditarPerfil = () => {
+export const HeaderEditarPerfil = ({ user }: HeaderEditarPerfilProps) => {
   const { register, handleSubmit, reset } = useForm();
 
-  const onHandleSubmit = (data: any) => {
-    if (data.first_name !== "" || data.last_name !== "") {
-      console.log(data);
-      reset();
+  const onHandleSubmit = async (data: any) => {
+    if (data.first_name !== "" && data.last_name !== "") {
+      try {
+        const res = await fetch(
+          `https://s12-01-m-node-react.onrender.com/api/v1/user/${user._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "same-origin",
+            body: JSON.stringify({
+              first_name: data.first_name,
+              last_name: data.last_name,
+            }),
+          }
+        );
+        if (res.ok) {
+          const responseData = await res.json();
+          console.log("Respuesta del servidor:", responseData);
+          return responseData;
+        } else {
+          return Promise.reject({
+            err: true,
+            status: res.status,
+            statusText: res.statusText,
+          });
+        }
+      } catch (err) {
+        return err;
+      }
     }
+    reset();
   };
 
   return (

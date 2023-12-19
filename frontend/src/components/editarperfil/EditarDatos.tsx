@@ -1,14 +1,46 @@
+import { UsuarioLogged } from "@/helpers/interfaces";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export const EditarDatos = () => {
+interface HeaderEditarPerfilProps {
+  user: UsuarioLogged;
+}
+
+export const EditarDatos = ({ user }: HeaderEditarPerfilProps) => {
   const { register, handleSubmit, reset } = useForm();
 
-  const onHandleSubmit = (data: any) => {
-    if (data.telephone !== "" || data.email !== "") {
-      console.log(data);
-      reset();
+  const onHandleSubmit = async (data: any) => {
+    if (data.telephone !== "" && data.email !== "") {
+      try {
+        const res = await fetch(
+          `https://s12-01-m-node-react.onrender.com/api/v1/user/${user._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              telephone: data.telelephone,
+              email: data.email,
+            }),
+          }
+        );
+        if (res.ok) {
+          const responseData = await res.json();
+          console.log("Respuesta del servidor:", responseData);
+          return responseData;
+        } else {
+          return Promise.reject({
+            err: true,
+            status: res.status,
+            statusText: res.statusText,
+          });
+        }
+      } catch (err) {
+        return err;
+      }
     }
+    reset();
   };
   return (
     <form

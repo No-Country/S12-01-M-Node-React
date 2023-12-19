@@ -5,8 +5,13 @@ import { EditarDatos } from "./EditarDatos";
 import { CambiarContraseña } from "./CambiarContraseña";
 import { MedioDePago } from "./MedioDePago";
 import { Verificacion } from "./Verificacion";
+import { UsuarioLogged } from "@/helpers/interfaces";
 
-export const EditarPerfilBody = () => {
+interface HeaderEditarPerfilProps {
+  user: UsuarioLogged;
+}
+
+export const EditarPerfilBody = ({ user }: HeaderEditarPerfilProps) => {
   const [value, setValue] = useState<string>("editar datos");
 
   return (
@@ -17,10 +22,10 @@ export const EditarPerfilBody = () => {
           setValue={setValue}
         />
       </article>
-      {value === "editar datos" && <EditarDatos />}
-      {value === "cambiar contraseña" && <CambiarContraseña />}
+      {value === "editar datos" && <EditarDatos user={user} />}
+      {value === "cambiar contraseña" && <CambiarContraseña user={user} />}
       {value === "medios de pago" && <MedioDePago />}
-      {value === "solicitar verificacion" && <Verificacion />}
+      {value === "solicitar verificacion" && <Verificacion user={user} />}
     </section>
   );
 };
