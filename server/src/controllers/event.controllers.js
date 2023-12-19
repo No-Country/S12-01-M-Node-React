@@ -1,5 +1,5 @@
 import Event from '../models/event.model.js';
-import { saveFavoriteEventService } from '../services/event.service.js';
+import { generateEventLinkService, saveFavoriteEventService } from '../services/event.service.js';
 
 export const allEvents = async (req, res) => {
     try {
@@ -134,5 +134,16 @@ export const saveFavoriteEventController = async (req, res) => {
         return res.status(200).json({ message: `Favorite saved` })
     } catch (error) {
         return res.status(500).json({ error: error.message });
+    }
+}
+
+export const generateEventLinkController = async (req, res) => {
+    try {
+        const { eventId } = req.params;
+        const eventLink = await generateEventLinkService(eventId);
+
+        res.status(200).json({ eventLink });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 }
