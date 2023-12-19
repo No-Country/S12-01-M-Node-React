@@ -1,11 +1,14 @@
-import { Role, UsuarioLogged } from "@/helpers/interfaces";
-import React from "react";
+import { UsuarioLogged } from "@/helpers/interfaces";
+import { useState } from "react";
+import { ModalVerificacion } from "./ModalVerificacion";
 
 interface HeaderEditarPerfilProps {
   user: UsuarioLogged;
 }
 
 export const Verificacion = ({ user }: HeaderEditarPerfilProps) => {
+  const [showModal, setShowModal] = useState(false);
+
   const handleButton = async () => {
     try {
       const res = await fetch(
@@ -16,13 +19,14 @@ export const Verificacion = ({ user }: HeaderEditarPerfilProps) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            role: Role.admin,
+            role: "admin",
           }),
         }
       );
       if (res.ok) {
         const responseData = await res.json();
         console.log("Respuesta del servidor:", responseData);
+        setShowModal(true);
         return responseData;
       } else {
         return Promise.reject({
@@ -36,6 +40,10 @@ export const Verificacion = ({ user }: HeaderEditarPerfilProps) => {
     }
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="w-full h-40 flex justify-center items-center">
       <button
@@ -43,6 +51,7 @@ export const Verificacion = ({ user }: HeaderEditarPerfilProps) => {
         className="bg-Principal text-white font-medium w-[300px] h-10 rounded-[10px] text-center">
         Solicitar verificacion
       </button>
+      {showModal && <ModalVerificacion onClose={closeModal} />}
     </div>
   );
 };

@@ -36,6 +36,10 @@ export const LoggedInfo = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(logged);
+  }, [logged.usuario.nombre]);
+
   return (
     <div
       ref={containerRef}

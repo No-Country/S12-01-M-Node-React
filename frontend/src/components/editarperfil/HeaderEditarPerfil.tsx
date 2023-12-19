@@ -3,6 +3,7 @@ import Image from "next/image";
 import avatarPerfil from "@/assets/img/avatarPerfil.png";
 import { useForm } from "react-hook-form";
 import { UsuarioLogged } from "@/helpers/interfaces";
+import useUser from "@/store/loginStore";
 
 interface HeaderEditarPerfilProps {
   user: UsuarioLogged;
@@ -10,6 +11,7 @@ interface HeaderEditarPerfilProps {
 
 export const HeaderEditarPerfil = ({ user }: HeaderEditarPerfilProps) => {
   const { register, handleSubmit, reset } = useForm();
+  const { setLogin } = useUser();
 
   const onHandleSubmit = async (data: any) => {
     if (data.first_name !== "" && data.last_name !== "") {
@@ -30,7 +32,21 @@ export const HeaderEditarPerfil = ({ user }: HeaderEditarPerfilProps) => {
         );
         if (res.ok) {
           const responseData = await res.json();
+          const name =
+            responseData.data.first_name + " " + responseData.data.last_name;
+          console.log("name", name);
           console.log("Respuesta del servidor:", responseData);
+          setLogin({
+            usuario: {
+              id: responseData.data._id,
+              nombre: name,
+              email: responseData.data.email,
+              telefono: responseData.data.telephone,
+              role: responseData.data.role,
+            },
+            isLogged: true,
+          });
+          reset();
           return responseData;
         } else {
           return Promise.reject({
@@ -43,7 +59,6 @@ export const HeaderEditarPerfil = ({ user }: HeaderEditarPerfilProps) => {
         return err;
       }
     }
-    reset();
   };
 
   return (

@@ -1,16 +1,16 @@
 import { Usuario, UsuarioLogged } from "@/helpers/interfaces";
 import { HeaderPerfil } from "@/components/perfil/HeaderPerfil";
 import { PerfilBody } from "@/components/perfil/PerfilBody";
+import { revalidatePath } from "next/cache";
 
 async function getData(id: string) {
   const res = await fetch(
     `https://s12-01-m-node-react.onrender.com/api/v1/user/${id}`
   );
-  console.log(res);
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-
+  revalidatePath("/", "layout");
   return res.json();
 }
 
