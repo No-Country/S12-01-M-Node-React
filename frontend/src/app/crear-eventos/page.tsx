@@ -1,5 +1,7 @@
+import { CrearEventosForm } from "@/components/CrearEventos/CrearEventosForm";
+
 const CrearEventosPage = () => {
-  return <div>CrearEventosPage</div>;
+  return <CrearEventosForm />;
 };
 
 export default CrearEventosPage;

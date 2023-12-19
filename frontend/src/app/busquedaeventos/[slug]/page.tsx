@@ -3,6 +3,7 @@ import { Eventos } from "@/helpers/interfaces";
 import notfoundIllustration from "@/assets/svg/notFound.svg";
 import Image from "next/image";
 import { HomeCategories } from "@/components/homepage/Principal/HomeCategories";
+import { revalidatePath } from "next/cache";
 
 async function getData() {
   const res = await fetch(
@@ -11,7 +12,7 @@ async function getData() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-
+  revalidatePath("/", "layout");
   return res.json();
 }
 

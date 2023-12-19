@@ -21,7 +21,7 @@ async function getEvents() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-
+  revalidatePath("/", "layout");
   return res.json();
 }
 

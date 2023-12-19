@@ -2,6 +2,7 @@ import { EventosCategories } from "@/components/eventos/EventosCategories";
 import { EventosList } from "@/components/eventos/EventosList";
 import { EventosPorUbicacion } from "@/components/eventos/EventosPorUbicacion";
 import { OrganizadoresDestacados } from "@/components/eventos/OrganizadoresDestacados";
+import { revalidatePath } from "next/cache";
 
 async function getData() {
   const res = await fetch(
@@ -10,6 +11,7 @@ async function getData() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
+  revalidatePath("/", "layout");
 
   return res.json();
 }

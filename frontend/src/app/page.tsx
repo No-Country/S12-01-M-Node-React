@@ -6,6 +6,7 @@ import { SearchBarHome } from "@/components/homepage/Principal/SearchBarHome";
 import Sponosrs from "@/components/homepage/Sponsors/Sponosrs";
 import Testimonios from "@/components/homepage/Testimonios/Testimonios";
 import { Eventos } from "@/helpers/interfaces";
+import { revalidatePath } from "next/cache";
 
 async function getData() {
   const res = await fetch(
@@ -14,7 +15,7 @@ async function getData() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-
+  revalidatePath("/", "layout");
   return res.json();
 }
 
