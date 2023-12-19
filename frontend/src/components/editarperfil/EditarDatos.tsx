@@ -1,4 +1,5 @@
 import { UsuarioLogged } from "@/helpers/interfaces";
+import useUser from "@/store/loginStore";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -11,6 +12,8 @@ export const EditarDatos = ({ user }: HeaderEditarPerfilProps) => {
 
   const onHandleSubmit = async (data: any) => {
     if (data.telephone !== "" && data.email !== "") {
+      console.log(data.telelephone);
+      console.log(data.email);
       try {
         const res = await fetch(
           `https://s12-01-m-node-react.onrender.com/api/v1/user/${user._id}`,
@@ -28,6 +31,7 @@ export const EditarDatos = ({ user }: HeaderEditarPerfilProps) => {
         if (res.ok) {
           const responseData = await res.json();
           console.log("Respuesta del servidor:", responseData);
+          reset();
           return responseData;
         } else {
           return Promise.reject({
@@ -40,7 +44,6 @@ export const EditarDatos = ({ user }: HeaderEditarPerfilProps) => {
         return err;
       }
     }
-    reset();
   };
   return (
     <form

@@ -1,5 +1,6 @@
 import { EditarPerfilBody } from "@/components/editarperfil/EditarPerfilBody";
 import { HeaderEditarPerfil } from "@/components/editarperfil/HeaderEditarPerfil";
+import { revalidatePath } from "next/cache";
 
 async function getData(id: string) {
   const res = await fetch(
@@ -8,7 +9,7 @@ async function getData(id: string) {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-
+  revalidatePath("/", "layout");
   return res.json();
 }
 
