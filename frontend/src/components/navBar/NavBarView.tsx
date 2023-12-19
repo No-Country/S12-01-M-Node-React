@@ -12,25 +12,25 @@ export const NavBarView = ({ id, setIsOpen }: NavBarViewProps) => {
   const { setLogOut } = useUser();
 
   const router = useRouter();
-  const handleLogout = /* async */ () => {
+  const handleLogout = async () => {
     setLogOut();
     setIsOpen(false);
-    router.push("/"); /*  console.log(res);
-    /*     const data = await fetch(
+    router.push("/");
+    const data = await fetch(
       "https://s12-01-m-node-react.onrender.com/api/v1/auth/logout"
-    ); */
-    /*     const res = await data.json();
+    );
+    const res = await data.json();
 
     if (res.ok) {
       setLogOut();
       setIsOpen(false);
       router.push("/");
     }
-    return res;*/
+    return res;
   };
 
   return (
-    <div className="absolute top-[30px] left-[-195px] bg-blue-400 z-20 w-[180px] rounded-b-[16px]">
+    <div className="absolute top-[30px] left-[-195px] bg-blue-400 z-20 w-[180px] rounded-b-[16px] pb-4">
       <ul className="flex items-end pr-4 flex-col gap-4 ">
         <li className="list-none">
           <Link

@@ -6,19 +6,39 @@ import avatarHome from "@/assets/img/avatarHome.png";
 import arrowDrop from "@/assets/svg/arrowDropDown.svg";
 import useUser from "@/store/loginStore";
 import { Role } from "@/helpers/interfaces";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavBarView } from "./NavBarView";
 
 export const LoggedInfo = () => {
   const logged = useUser((state) => state.loginInfo);
   const [isOpen, setIsOpen] = useState<Boolean>(false);
+  const containerRef = useRef<any>();
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      containerRef.current &&
+      event.target instanceof Node &&
+      !containerRef.current.contains(event.target)
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div
+      ref={containerRef}
       className={`flex justify-center gap-4 bg-Azul h-full rounded-tl-xl rounded-bl-xl items-center ${
         logged.isLogged ? "w-[410px]" : "w-[300px]"
       }`}>

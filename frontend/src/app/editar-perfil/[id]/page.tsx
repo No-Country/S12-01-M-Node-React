@@ -1,13 +1,25 @@
 import { EditarPerfilBody } from "@/components/editarperfil/EditarPerfilBody";
 import { HeaderEditarPerfil } from "@/components/editarperfil/HeaderEditarPerfil";
 
-const EditarPerfilPage = ({ params }: { params: { id: string } }) => {
+async function getData(id: string) {
+  const res = await fetch(
+    `https://s12-01-m-node-react.onrender.com/api/v1/user/${id}`
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+const EditarPerfilPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  console.log(id);
+  const user = await getData(id);
+  const dataUser = user.data;
   return (
     <main>
-      <HeaderEditarPerfil />
-      <EditarPerfilBody />
+      <HeaderEditarPerfil user={dataUser} />
+      <EditarPerfilBody user={dataUser} />
     </main>
   );
 };
