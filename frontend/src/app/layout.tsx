@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={dmSans.className}>
         <NavBar />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
