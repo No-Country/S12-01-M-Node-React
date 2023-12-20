@@ -1,10 +1,8 @@
 "use client";
-/* import useUser from "@/store/loginStore";
- */ import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ModalCreacionEvento } from "./ModalCreacionEvento";
 import { useState } from "react";
 import useUser from "@/store/loginStore";
-import { main } from "ts-node/dist/bin";
 import Link from "next/link";
 
 export const CrearEventosForm = () => {
