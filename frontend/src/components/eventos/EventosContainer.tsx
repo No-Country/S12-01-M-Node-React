@@ -24,7 +24,7 @@ export const EventosContainer = ({
       return evento.categories === "Musica";
     }
     if (categoria === "vidanocturna") {
-      return evento.categories === "Vida Nocturna";
+      return evento.categories === "Vida nocturna";
     }
     if (categoria === "gastronomia") {
       return evento.categories === "Gastronomia";
@@ -33,7 +33,7 @@ export const EventosContainer = ({
       return evento.categories === "Comunidad";
     }
     if (categoria === "artesescenicas") {
-      return evento.categories === "Artes Escenicas";
+      return evento.categories === "Artes escenicas";
     }
   });
 

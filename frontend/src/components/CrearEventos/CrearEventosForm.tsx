@@ -1,11 +1,13 @@
 "use client";
-import useUser from "@/store/loginStore";
 import { useForm } from "react-hook-form";
 import { ModalCreacionEvento } from "./ModalCreacionEvento";
 import { useState } from "react";
+import useUser from "@/store/loginStore";
+import Link from "next/link";
 
 export const CrearEventosForm = () => {
   const { register, reset, handleSubmit, watch } = useForm();
+  /* const logged = useUser((state) => state.loginInfo); */
   const logged = useUser((state) => state.loginInfo);
   const [showModal, setShowModal] = useState(false);
 
@@ -23,7 +25,7 @@ export const CrearEventosForm = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name: "data.nombre",
+            name: data.nombre,
             users: logged.usuario.id,
             categories: data.categoria,
             location: data.location,
@@ -65,104 +67,120 @@ export const CrearEventosForm = () => {
   };
 
   return (
-    <form
-      className="p-10 mb-10"
-      onSubmit={handleSubmit(onHandleSubmit)}>
-      <section className="flex flex-col gap-4 mb-8">
-        <h2 className="font-bold text-[32px]">Información del Evento</h2>
-        <input
-          type="text"
-          placeholder="Nombre del evento"
-          className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
-          {...register("nombre")}
-        />
-        <select
-          className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
-          {...register("categoria")}>
-          <option value="">Categorías</option>
-          <option value="Artes escenicas">Artes Escénicas</option>
-          <option value="Musica">Música</option>
-          <option value="Negocios">Negocios</option>
-          <option value="Comunidad">Comunidad</option>
-          <option value="Gastronomia">Gastronomía</option>
-          <option value="Vida nocturna">Vida Nocturna</option>
-        </select>
-      </section>
-      <section className="flex flex-col gap-4 mb-8">
-        <h2 className="font-bold text-[32px]">Locación</h2>
-        <p>
-          Ayude a las personas de la zona a descubrir su evento e informe a los
-          asistentes dónde presentarse.
-        </p>
-        <div className="flex gap-8 mb-4">
-          <label
-            htmlFor="presencial"
-            className="relative px-8 py-4">
-            Evento Presencial
+    <>
+      {logged.isLogged ? (
+        <form
+          className="p-10 mb-10"
+          onSubmit={handleSubmit(onHandleSubmit)}>
+          <section className="flex flex-col gap-4 mb-8">
+            <h2 className="font-bold text-[32px]">Información del Evento</h2>
             <input
-              type="radio"
-              id="presencial"
-              value="presencial"
-              className="radioButtonHomePage border border-gray-400 rounded-[10px] checked:border-Principal"
-              {...register("ubicacion")}
+              type="text"
+              placeholder="Nombre del evento"
+              className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
+              {...register("nombre")}
             />
-          </label>
-          <label
-            htmlFor="online"
-            className="relative px-8 py-4">
-            Evento Online
-            <input
-              type="radio"
-              value="online"
-              className="radioButtonHomePage border border-gray-400 rounded-[10px] checked:border-Principal"
-              {...register("ubicacion")}
-            />
-          </label>
-        </div>
+            <select
+              className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
+              {...register("categoria")}>
+              <option value="">Categorías</option>
+              <option value="Artes escenicas">Artes Escénicas</option>
+              <option value="Musica">Música</option>
+              <option value="Negocios">Negocios</option>
+              <option value="Comunidad">Comunidad</option>
+              <option value="Gastronomia">Gastronomía</option>
+              <option value="Vida nocturna">Vida Nocturna</option>
+            </select>
+          </section>
+          <section className="flex flex-col gap-4 mb-8">
+            <h2 className="font-bold text-[32px]">Locación</h2>
+            <p>
+              Ayude a las personas de la zona a descubrir su evento e informe a
+              los asistentes dónde presentarse.
+            </p>
+            <div className="flex gap-8 mb-4">
+              <label
+                htmlFor="presencial"
+                className="relative px-8 py-4">
+                Evento Presencial
+                <input
+                  type="radio"
+                  id="presencial"
+                  value="presencial"
+                  defaultChecked
+                  className="radioButtonHomePage border border-gray-400 rounded-[10px] checked:border-2 checked:border-Principal"
+                  {...register("ubicacion")}
+                />
+              </label>
+              <label
+                htmlFor="online"
+                className="relative px-8 py-4">
+                Evento Online
+                <input
+                  type="radio"
+                  value="online"
+                  className="radioButtonHomePage border border-gray-400 rounded-[10px] checked:border-2 checked:border-Principal"
+                  {...register("ubicacion")}
+                />
+              </label>
+            </div>
 
-        <input
-          type="text"
-          placeholder={
-            watch("ubicacion") === "presencial"
-              ? "Ubicación del Evento"
-              : "Agregar enlace de transmisión en vivo"
-          }
-          className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
-          {...register("location")}
-        />
-      </section>
-      <section className="flex flex-col gap-4 mb-8">
-        <h2 className="font-bold text-[32px]">Fecha y Hora</h2>
-        <p>
-          Díle a los asistentes cuándo comienza y termina su evento para que
-          puedan hacer planes para asistir.
-        </p>
-        <input
-          className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
-          type="date"
-          placeholder="Fecha del Evento"
-          {...register("fecha")}
-        />
-        <input
-          className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
-          type="time"
-          placeholder="Hora del Evento"
-          {...register("hora")}
-        />
-      </section>
-      <section className="flex gap-8">
-        <button
-          type="reset"
-          className="px-4 py-2 bg-gray-400 rounded-[10px] text-white">
-          Descartar
-        </button>
-        <button
-          type="submit"
-          className="px-4 py-2 bg-Azul rounded-[10px] text-white">
-          Crear y Continuar
-        </button>
-      </section>
-      {showModal && <ModalCreacionEvento onClose={closeModal} />}
-    </form>
+            <input
+              type="text"
+              placeholder={
+                watch("ubicacion") === "presencial"
+                  ? "Ubicación del Evento"
+                  : "Agregar enlace de transmisión en vivo"
+              }
+              className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
+              {...register("location")}
+            />
+          </section>
+          <section className="flex flex-col gap-4 mb-8">
+            <h2 className="font-bold text-[32px]">Fecha y Hora</h2>
+            <p>
+              Díle a los asistentes cuándo comienza y termina su evento para que
+              puedan hacer planes para asistir.
+            </p>
+            <input
+              className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
+              type="date"
+              placeholder="Fecha del Evento"
+              {...register("fecha")}
+            />
+            <input
+              className="px-4 h-14 w-1/2 border border-gray-400 rounded-[10px]"
+              type="time"
+              placeholder="Hora del Evento"
+              {...register("hora")}
+            />
+          </section>
+          <section className="flex gap-8">
+            <button
+              type="reset"
+              className="px-4 py-2 bg-gray-400 rounded-[10px] text-white">
+              Descartar
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-Azul rounded-[10px] text-white">
+              Crear y Continuar
+            </button>
+          </section>
+          {showModal && <ModalCreacionEvento onClose={closeModal} />}
+        </form>
+      ) : (
+        <main className="flex justify-center items-center w-full h-[100vh] flex-col">
+          <h2 className="text-[32px] font-bold mb-8">
+            Tenés que Iniciar Sesión para poder crear un evento
+          </h2>
+          <Link
+            href={"/login"}
+            className="bg-Principal rounded-[10px] p-4 text-white font-medium">
+            Iniciar Sesión
+          </Link>
+        </main>
+      )}
+    </>
   );
 };

@@ -20,11 +20,11 @@ const EventosPage = async () => {
   const events = await getData();
 
   const categorias = [
-    "Eventos Destacados",
+    "Eventos destacados",
     "Música",
     "Gastronomía",
-    "Vida Nocturna",
-    "Artes Escenicas",
+    "Vida nocturna",
+    "Artes escenicas",
     "Comunidad",
     "Negocios",
   ];
