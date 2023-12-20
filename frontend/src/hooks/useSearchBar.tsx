@@ -1,33 +1,25 @@
-import { Eventos } from "@/helpers/interfaces";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-const useSearchBar = (eventosArray: Eventos[]) => {
+const useSearchBar = () => {
+  const router = useRouter();
   const { register, handleSubmit, setValue, reset } = useForm();
-
-  const filterEvents = (data: any) => {
-    console.log(data);
-    const searchInput = data.search.toLowerCase();
-    return eventosArray.filter((evento: Eventos) => {
-      const lowerCaseNombre = evento.nombre.toLowerCase();
-      const lowerCaseCategoria = evento.categoria.toLowerCase();
-      const lowerCaseLocation = evento.location.toLowerCase();
-
-      return (
-        lowerCaseNombre.includes(searchInput) ||
-        lowerCaseCategoria.includes(searchInput) ||
-        lowerCaseLocation.includes(searchInput)
-      );
-    });
-  };
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const onSubmit = (data: any) => {
-    console.log(data);
-    const filteredEvents = filterEvents(data);
-    console.log("Eventos filtrados:", filteredEvents);
+    router.push(`/busquedaeventos/${data.search}`);
     reset();
   };
 
-  return { onSubmit, register, handleSubmit, setValue };
+  return {
+    onSubmit,
+    register,
+    handleSubmit,
+    setValue,
+    searchTerm,
+    setSearchTerm,
+  };
 };
 
 export default useSearchBar;

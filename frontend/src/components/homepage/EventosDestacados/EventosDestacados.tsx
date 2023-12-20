@@ -4,21 +4,26 @@ import { CardEventoContainer } from "./CardEventoContainer";
 import { FilterBar } from "./FilterBar";
 import { FilterBarButtons } from "./FilterBarButtons";
 import { Eventos } from "@/helpers/interfaces";
-import { eventosArray } from "@/helpers/eventosArray";
 
-export const EventosDestacados = () => {
+interface EventosDestacadosProps {
+  events: Eventos[];
+}
+
+export const EventosDestacados = ({ events }: EventosDestacadosProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [value, setValue] = useState<string>("todos");
 
   const filteredEvents = (events: Eventos[], value: string) => {
     if (value === "online") {
-      return events.filter((event) => event.online === true);
+      return events.filter(
+        (event) => event.location.toLocaleLowerCase() === "online"
+      );
     }
     if (value === "populares") {
-      return events.filter((event) => event.popular === true);
+      return events.filter((event) => event.stock_tickets < 20);
     }
     if (value === "gratis") {
-      return events.filter((event) => event.precio === 0);
+      return events.filter((event) => event.price === 0);
     }
     if (value === "hoy") {
       const day = new Date().getDate();
@@ -42,7 +47,9 @@ export const EventosDestacados = () => {
 
       const nombreMes = nombresMeses[month];
       const hoy = `${day} de ${nombreMes} ${year}`;
-      return events.filter((event) => event.fecha.toLocaleLowerCase() === hoy);
+      return events.filter(
+        (event) => event.date_of_event.toLocaleLowerCase() === hoy
+      );
     }
     return events;
   };
@@ -62,11 +69,11 @@ export const EventosDestacados = () => {
         <FilterBarButtons
           setCurrentIndex={setCurrentIndex}
           currentIndex={currentIndex}
-          eventos={filteredEvents(eventosArray, value)}
+          eventos={filteredEvents(events, value)}
         />
       </div>
       <CardEventoContainer
-        eventos={filteredEvents(eventosArray, value)}
+        eventos={filteredEvents(events, value)}
         currentIndex={currentIndex}
       />
     </section>

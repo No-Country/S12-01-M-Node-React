@@ -2,8 +2,23 @@ import { EventosCategories } from "@/components/eventos/EventosCategories";
 import { EventosList } from "@/components/eventos/EventosList";
 import { EventosPorUbicacion } from "@/components/eventos/EventosPorUbicacion";
 import { OrganizadoresDestacados } from "@/components/eventos/OrganizadoresDestacados";
+import { revalidatePath } from "next/cache";
 
-const EventosPage = () => {
+async function getData() {
+  const res = await fetch(
+    "https://s12-01-m-node-react.onrender.com/api/v1/events/"
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  revalidatePath("/", "layout");
+
+  return res.json();
+}
+
+const EventosPage = async () => {
+  const events = await getData();
+
   const categorias = [
     "Eventos Destacados",
     "Música",
@@ -20,6 +35,7 @@ const EventosPage = () => {
       <EventosCategories />
       {categorias.map((categoria, index) => (
         <EventosList
+          events={events}
           key={index}
           titulo={categoria}
         />

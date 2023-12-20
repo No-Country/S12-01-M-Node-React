@@ -30,7 +30,7 @@ export const FilterBarButtons = ({
   return (
     <aside className="flex">
       <div
-        className="w-[40px] h-[40] flex items-center justify-center cursor-pointer py-2"
+        className={`w-[40px] h-[40] flex items-center justify-center cursor-pointer py-2 `}
         onClick={prevCard}>
         <Image
           src={backArow}

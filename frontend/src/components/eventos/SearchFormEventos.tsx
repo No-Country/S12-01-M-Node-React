@@ -3,16 +3,15 @@ import useSearchBar from "@/hooks/useSearchBar";
 import blueSearchIcon from "@/assets/svg/blueSearchIcon.svg";
 import Image from "next/image";
 
-interface SearchFormEventosProps {
-  filteredEvents: Eventos[];
-}
-
-export const SearchFormEventos = ({
-  filteredEvents,
-}: SearchFormEventosProps) => {
-  const { onSubmit, register, handleSubmit, setValue } =
-    useSearchBar(filteredEvents);
-
+export const SearchFormEventos = () => {
+  const {
+    onSubmit,
+    register,
+    handleSubmit,
+    setValue,
+    searchTerm,
+    setSearchTerm,
+  } = useSearchBar();
   return (
     <form className="relative">
       <input
@@ -22,6 +21,7 @@ export const SearchFormEventos = ({
         {...register("search")}
         onChange={(e) => {
           setValue("search", e.target.value.toLowerCase());
+          setSearchTerm(e.target.value);
         }}
       />
       <Image
@@ -30,7 +30,11 @@ export const SearchFormEventos = ({
         height={24}
         alt="Search Button"
         className="absolute top-[32px] left-[87%] cursor-pointer"
-        onClick={() => handleSubmit(onSubmit)()}
+        onClick={() => {
+          if (searchTerm !== "") {
+            handleSubmit(onSubmit)();
+          }
+        }}
       />
     </form>
   );

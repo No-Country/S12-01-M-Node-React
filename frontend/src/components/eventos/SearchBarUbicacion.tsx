@@ -2,11 +2,16 @@
 import Image from "next/image";
 import searchButton from "@/assets/svg/SearchIcon.svg";
 import useSearchBar from "@/hooks/useSearchBar";
-import { eventosArray } from "@/helpers/eventosArray";
 
 export const SearchBarUbicacion = () => {
-  const { onSubmit, register, handleSubmit, setValue } =
-    useSearchBar(eventosArray);
+  const {
+    onSubmit,
+    register,
+    handleSubmit,
+    setValue,
+    searchTerm,
+    setSearchTerm,
+  } = useSearchBar();
 
   return (
     <form className="relative">
@@ -20,6 +25,7 @@ export const SearchBarUbicacion = () => {
         {...register("search")}
         onChange={(e) => {
           setValue("search", e.target.value.toLowerCase());
+          setSearchTerm(e.target.value);
         }}
       />
       <Image
@@ -28,7 +34,11 @@ export const SearchBarUbicacion = () => {
         height={23}
         alt="Search Button"
         className="absolute top-[15px] left-[87%] cursor-pointer"
-        onClick={() => handleSubmit(onSubmit)()}
+        onClick={() => {
+          if (searchTerm !== "") {
+            handleSubmit(onSubmit)();
+          }
+        }}
       />
     </form>
   );

@@ -1,7 +1,13 @@
 import Image from "next/image";
 import checked from "@/assets/svg/checked.svg";
+import { Eventos } from "@/helpers/interfaces";
+import { formatoFecha, formatoHora } from "@/helpers/formatdate";
 
-export const EventDetail = () => {
+interface EventDetailProps {
+  singleEvent: Eventos;
+}
+
+export const EventDetail = ({ singleEvent }: EventDetailProps) => {
   return (
     <div>
       <h4 className="font-bold text-2xl">Detalles</h4>
@@ -13,7 +19,7 @@ export const EventDetail = () => {
             width={24}
             height={24}
           />
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
+          <p>Categoría: {singleEvent.categories}</p>
         </div>
         <div className="flex items-center justify-start gap-8">
           <Image
@@ -22,7 +28,7 @@ export const EventDetail = () => {
             width={24}
             height={24}
           />
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
+          <p>Fecha: {formatoFecha(singleEvent.date_of_event)}</p>
         </div>
         <div className="flex items-center justify-start gap-8">
           <Image
@@ -31,7 +37,7 @@ export const EventDetail = () => {
             width={24}
             height={24}
           />
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
+          <p>Hora: {formatoHora(singleEvent.date_of_event)}</p>
         </div>
         <div className="flex items-center justify-start gap-8">
           <Image
@@ -40,7 +46,7 @@ export const EventDetail = () => {
             width={24}
             height={24}
           />
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
+          <p>Precio: {singleEvent.price}</p>
         </div>
       </div>
     </div>

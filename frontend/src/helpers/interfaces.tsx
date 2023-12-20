@@ -1,3 +1,15 @@
+export interface UsuarioLogged {
+  _id?: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  telephone: string;
+  favorites?: string[];
+  tickets?: string[];
+  role: Role;
+  isActive?: boolean;
+}
+
 export interface Usuario {
   id?: string;
   nombre: string;
@@ -15,18 +27,16 @@ export enum Role {
 }
 
 export interface Eventos {
-  nombre: string;
-  dueño: string;
-  categoria: string;
+  _id?: string;
+  name: string;
+  users: string;
+  categories: string;
   location: string;
-  fecha: string;
-  stock: number;
-  precio: number;
-  comentarios: string[];
-  imagen: string;
-  popular?: boolean;
-  online?: boolean;
-  id: string;
+  date_of_event: string;
+  stock_tickets: number;
+  price: number;
+  comments: string[];
+  image: string;
 }
 
 export interface UserLoginState {

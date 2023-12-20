@@ -1,6 +1,7 @@
 import breadcumbIcon from "@/assets/svg/breadcumbIcon.svg";
 import Image from "next/image";
 import { EventosContainer } from "@/components/eventos/EventosContainer";
+import { revalidatePath } from "next/cache";
 
 export async function generateStaticParams() {
   const categorias = [
@@ -17,6 +18,18 @@ export async function generateStaticParams() {
   }));
 }
 
+async function getData() {
+  const res = await fetch(
+    "https://s12-01-m-node-react.onrender.com/api/v1/events/"
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  revalidatePath("/", "layout");
+
+  return res.json();
+}
+
 const categoriaMapping: { [key: string]: string } = {
   musica: "Música",
   vidanocturna: "Vida Nocturna",
@@ -26,8 +39,13 @@ const categoriaMapping: { [key: string]: string } = {
   comunidad: "Comunidad",
 };
 
-const CategoryEventPage = ({ params }: { params: { categoria: string } }) => {
+const CategoryEventPage = async ({
+  params,
+}: {
+  params: { categoria: string };
+}) => {
   const { categoria } = params;
+  const events = await getData();
 
   return (
     <main>
@@ -53,7 +71,10 @@ const CategoryEventPage = ({ params }: { params: { categoria: string } }) => {
           {categoriaMapping[categoria]}
         </h1>
       </section>
-      <EventosContainer categoria={categoria} />
+      <EventosContainer
+        categoria={categoria}
+        events={events}
+      />
     </main>
   );
 };

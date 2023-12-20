@@ -1,16 +1,37 @@
-import React from 'react'
-import { FaFacebook, FaTwitter } from 'react-icons/fa'
-import { EventosList } from '../EventosList'
-import { eventosArray } from '@/helpers/eventosArray'
-import { EventoCard } from '../EventoCard'
-import CardsTestOrg from './OrgUltimReseñas'
+import { revalidatePath } from 'next/cache'
+import { FaFacebook, FaTwitter } from 'react-icons/fa';
+import CardsTestOrg from './OrgUltimReseñas';
+import { OtherEventsList } from '../eventosDetail/OtherEventsList';
+import { ListOrgEvent } from './ListOrgEvent';
+import { CardCambi } from './cardcambiarcontainer';
+import EventProx from './EnventsProx/EventProx';
 
 type Props = {}
 
-const OrgPerfil = (props: Props) => {
+async function getData() {
+    const res = await fetch(
+      "https://s12-01-m-node-react.onrender.com/api/v1/events/"
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    revalidatePath("/", "layout");
+  
+    return res.json();
+  }
+
+
+const OrgPerfil = async (props: Props) => {
+
+  const events = await getData();
+
+      
+
   return (
-    <div className='flex justify-center items-center w-full h-full flex-col'>
-    <div className='w-5/6'>
+    <div className='flex justify-center  w-full h-full flex-col'>
+    <div className='w-full flex justify-center  flex-col items-center'>
+<div className='w-5/6'>
+
 
         <section className='bg-white shadow-lg rounded-[10px]  my-5 shadow-[#BE316C] flex w-full py-10 px-8 justify-around items-center '>
             <section className='flex justify-evenly w-1/2 mr-10 h-full '>
@@ -41,28 +62,20 @@ const OrgPerfil = (props: Props) => {
         </section>
         
     <section className='w-full flex flex-col items-center justify-center  '>
-    <div className=' flex  w-full items-center  '>
-        <p className='mx-4 border-b-2 border-Principal text-Principal  py-2 cursor-pointer'>Próximos eventos</p>
-        <p className='mx-4 border-b-2  border-transparent py-2'>Eventos pasados</p>
-
-    </div>
- <div className=' my-4 flex justify-around shrink w-full  items-center '>
- {eventosArray.slice(0,3).map((evento) => (
-     <EventoCard
-            key={evento.id}
-            evento={evento}
-            
-            />
-            ))}
- </div>
+  <EventProx/>
  <div className='my-20 w-full rela'>
   
          <CardsTestOrg/>
  </div>
+
     </section>
+    </div>
             </div>
+    <div>
+ <ListOrgEvent events={events} title='También te puede interesar'/>
+
+ </div>
     </div>
   )
-}
-
+        }
 export default OrgPerfil

@@ -136,17 +136,17 @@ const ContTest = [
          </div>
        </div>
  
-       <div className="flex justify-start items-start overflow-x-auto space-x-4">
+       <div className="flex justify-start items-start overflow-hidden space-x-4">
          {ContTest.map((card, index) => (
            <div
              key={card.id}
-             className={`w-full h-fit rounded-[10px] shadow-2xl mt-10 bg-white py-3 mr-4 px-3 border-2 border-Principal transform transition-transform ease-in-out duration-500 ${
-               index === currentIndex ? " border-2 border-Principal" : " border-2 border-[#526FD6] "
+             className={`w-full h-full rounded-[10px] shadow-2xl mt-10 bg-white py-3 mr-3 px-4 border-2 border-Principal transform transition-transform ease-in-out duration-500 ${
+               index === currentIndex ? "  border-Principal" : "  border-[#526FD6] "
              }`}
            >
              <div className="flex">
-               <BiSolidQuoteSingleLeft className="w-16 h-16 relative right-4 fill-Principal" />
-               <BiSolidQuoteSingleLeft className="w-16 h-16 relative right-12 fill-Principal" />
+               <BiSolidQuoteSingleLeft className={`w-16 h-16 relative right-4 fill-Principal ${index === currentIndex ? "fill-Principal" : "fill-[#526FD6]"}`} />
+               <BiSolidQuoteSingleLeft className={`w-16 h-16 relative right-12 fill-Principal ${index === currentIndex ? "fill-Principal" : "fill-[#526FD6]"}`} />
              </div>
              <div className="h-fit my-3">
                <p className="text-lg text-[#4e4e4e]">{card.param}</p>
