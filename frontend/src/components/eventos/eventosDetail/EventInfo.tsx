@@ -19,6 +19,7 @@ export const EventInfo = ({ singleEvent }: EventInfoProps) => {
           alt="organizador"
           width={60}
           height={60}
+          className="object-contian"
         />
         <div>
           <p className="font-bold text-xl">Draw Brighton</p>

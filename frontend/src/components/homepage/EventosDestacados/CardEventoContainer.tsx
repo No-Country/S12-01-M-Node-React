@@ -35,6 +35,7 @@ export const CardEventoContainer: React.FC<CardEventoContainerProps> = ({
               width={329}
               height={178}
               alt={`Foto del evento ${evento.name}`}
+              className="object-contain h-[178px]"
             />
             <span className="bg-Azul absolute text-white top-4 left-3 px-2 py-1 text-sm font-bold rounded-[4px]">
               {formatoFecha(evento.date_of_event)}

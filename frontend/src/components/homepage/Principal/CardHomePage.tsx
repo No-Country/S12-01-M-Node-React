@@ -15,10 +15,11 @@ export const CardHomePage = ({ popular }: CardHomePageProps) => {
     <aside className="w-[331px] h-[450px] bg-gradient-to-tr from-pink-600 via-indigo-500 to-indigo-500 rounded-[20px] p-[1px]">
       <div className="h-[400px] w-full rounded-[20px] bg-white relative">
         <Image
-          src={"/images/evento1.png"}
+          src={popular.image}
           width={329}
           height={178}
           alt={`Foto del evento ${popular.name}`}
+          className="object-contian h-[178px]"
         />
         <span className="bg-Azul absolute text-white top-4 left-3 px-2 py-1 text-sm font-bold rounded-[4px]">
           {fechaFormateada}
