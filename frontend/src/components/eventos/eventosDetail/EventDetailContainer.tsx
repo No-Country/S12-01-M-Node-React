@@ -28,7 +28,7 @@ export const EventDetailContainer = ({
         alt="event header image"
         height={333}
         width={1280}
-        className="object-cover"
+        className="w-full object-cover"
       />
       <section className="p-10 flex justify-between w-full">
         <EventInfo singleEvent={singleEvent} />
