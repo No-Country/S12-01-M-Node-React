@@ -24,7 +24,7 @@ export const EventDetailContainer = ({
   return (
     <>
       <Image
-        src={"/images/eventoheader.png"}
+        src={singleEvent.image}
         alt="event header image"
         height={333}
         width={1280}

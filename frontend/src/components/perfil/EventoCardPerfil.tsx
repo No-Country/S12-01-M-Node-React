@@ -20,7 +20,7 @@ export const EventoCardPerfil = ({ event }: EventoCardPerfil) => {
       </span>
       <div className="h-[398px] w-full rounded-[20px] bg-white relative">
         <Image
-          src={"/images/evento1.png"}
+          src={event.image}
           width={329}
           height={178}
           alt={`Foto del event ${event.name}`}
