@@ -1,34 +1,125 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "img.evbuc.com",
-      "evbuc.com",
-      "cdn.ticketle.net",
-      "ticketle.net",
-      "diariohoynet.nyc3.cdn.digitaloceanspaces.com",
-      "pronto.com.ar",
-      "imgplateanet.com.ar",
-      "plateanet.com.ar",
-      "cdn.atrapalo.com",
-      "atrapalo.com.ar",
-      "pexels.com",
-      "images.pexels.com",
-      "cdn.getcrowder.com",
-      "getcrowder.com",
-      "oleorevista.com",
-      "alafresca.com.ar",
-      "resizer.iproimg.com",
-      "iproimg.com",
-      "media.timeout.com",
-      "timeout.com",
-      "travelnewstalk.com",
-      "vcmanagementcouncil.org",
-      "vicentelopez.gov.ar",
-      "res.cloudinary.com",
-      "cloudinary.com",
-      "calendariodecarrerascentro.ar",
-      "clarin.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.evbuc.com",
+      },
+      {
+        protocol: "https",
+        hostname: "evbuc.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.ticketle.net",
+      },
+      {
+        protocol: "https",
+        hostname: "ticketle.net",
+      },
+      {
+        protocol: "https",
+        hostname: "diariohoynet.nyc3.cdn.digitaloceanspaces.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.pronto.com.ar",
+      },
+      {
+        protocol: "https",
+        hostname: "imgplateanet.com.ar",
+      },
+      {
+        protocol: "https",
+        hostname: "plateanet.com.ar",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.atrapalo.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.atrapalo.com.ar",
+      },
+      {
+        protocol: "https",
+        hostname: "pexels.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.getcrowder.com",
+      },
+
+      {
+        protocol: "https",
+        hostname: "getcrowder.com",
+      },
+
+      {
+        protocol: "https",
+        hostname: "www.oleorevista.com",
+      },
+
+      {
+        protocol: "https",
+        hostname: "alafresca.com.ar",
+      },
+
+      {
+        protocol: "https",
+        hostname: "resizer.iproimg.com",
+      },
+
+      {
+        protocol: "https",
+        hostname: "iproimg.com",
+      },
+
+      {
+        protocol: "https",
+        hostname: "media.timeout.com",
+      },
+
+      {
+        protocol: "https",
+        hostname: "timeout.com",
+      },
+
+      {
+        protocol: "https",
+        hostname: "www.travelnewstalk.com",
+      },
+
+      {
+        protocol: "https",
+        hostname: "www.vcmanagementcouncil.org",
+      },
+
+      {
+        protocol: "https",
+        hostname: "www.vicentelopez.gov.ar",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cloudinary.com",
+      },
+      {
+        protocol: "https",
+        hostname: "calendariodecarrerascentro.ar",
+      },
+      {
+        protocol: "https",
+        hostname: "www.clarin.com",
+      },
     ],
   },
   async headers() {

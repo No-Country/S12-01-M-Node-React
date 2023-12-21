@@ -1,6 +1,5 @@
 "use client";
 import { roboto } from "@/assets/font";
-import { Role } from "@/helpers/interfaces";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useForm } from "react-hook-form";
@@ -13,7 +12,7 @@ interface RegisterFormInputs {
   telephone: string;
   email: string;
   password: string;
-  role: Role.user;
+  role: "user";
 }
 
 const RegisterForm = () => {
@@ -32,7 +31,6 @@ const RegisterForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "same-origin",
         body: JSON.stringify({
           first_name: data.first_name,
           last_name: data.last_name,

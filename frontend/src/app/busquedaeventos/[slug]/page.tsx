@@ -19,7 +19,7 @@ async function getData() {
 const BusquedaPage = async ({ params }: { params: { slug: string } }) => {
   const events = await getData();
   const filteredEvents = events.filter((event: Eventos) => {
-    return event.categories.toLowerCase() === params.slug;
+    return event.categories.toLowerCase() === decodeURI(params.slug);
   });
 
   return (
