@@ -16,12 +16,12 @@ interface TicketInfoProps {
 
 export const TicketInfo = ({ singleEvent, setShowModal }: TicketInfoProps) => {
   const logged = useUser((state) => state.loginInfo);
-  /*   const [count, setCount] = useState(1); */
 
   const buyTicket = async (
     userId: string | undefined,
     eventId: string | undefined
   ) => {
+    setShowModal(true);
     try {
       const res = await fetch(
         `https://s12-01-m-node-react.onrender.com/api/v1/tickets/${userId}?event=${eventId}`,
@@ -36,7 +36,6 @@ export const TicketInfo = ({ singleEvent, setShowModal }: TicketInfoProps) => {
       if (res.ok) {
         const responseData = await res.json();
         console.log("Respuesta del servidor:", responseData);
-        setShowModal(true);
         return responseData;
       } else {
         return Promise.reject({
